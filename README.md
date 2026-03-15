@@ -9,4 +9,4 @@
 | 3   | Yared Kassu             | ETS1414/16 |
 | 4   | Yasmin Usman            | ETS1421/16 |
 | 5   | Yeabsira Belay          | ETS1428/16 |
-| 6   | Yeabsira Tarekegne      | ETS1438/16 |
+| 6   | Yeabsira Tarekegn      | ETS1438/16 |
