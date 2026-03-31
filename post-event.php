@@ -58,4 +58,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $organizer_name = trim($_POST['organizer_name'] ?? '');
         $organizer_email = trim($_POST['organizer_email'] ?? '');
 
+         if (empty($title)) $errors[] = 'Event title is required';
+        if (empty($category)) $errors[] = 'Category is required';
+        if (empty($description)) $errors[] = 'Description is required';
+        if (strlen($description) < 150) $errors[] = 'Description must be at least 150 characters';
+        if (empty($event_date)) $errors[] = 'Event date is required';
+        if (empty($event_time)) $errors[] = 'Event time is required';
+        if (empty($location)) $errors[] = 'Event location is required';
+        if (empty($organizer_name)) $errors[] = 'Organizer name is required';
+        if (empty($organizer_email)) $errors[] = 'Contact email is required';
+        if (!filter_var($organizer_email, FILTER_VALIDATE_EMAIL)) $errors[] = 'Valid email is required';
         
+        // Validate ticket quantity
+        $ticket_type = $_POST['ticket_type'] ?? 'free';
+        if ($ticket_type === 'paid') {
+            $ticket_price = floatval($_POST['ticket_price'] ?? 0);
+            $ticket_quantity = intval($_POST['ticket_quantity_form'] ?? 0);
+            if ($ticket_price <= 0) $errors[] = 'Valid ticket price is required';
+            if ($ticket_quantity < 1 || $ticket_quantity > 10000) $errors[] = 'Ticket quantity must be between 1 and 10000';
+        } else {
+            $ticket_quantity = intval($_POST['free_ticket_quantity'] ?? 200);
+            $ticket_price = null;
+        }
+        
+        // Handle image upload (if present)
+        $image_path = null;
+        if (isset($_FILES['event_image']) && $_FILES['event_image']['error'] === UPLOAD_ERR_OK) {
+            $file = $_FILES['event_image'];
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $mime = $finfo->file($file['tmp_name']);
