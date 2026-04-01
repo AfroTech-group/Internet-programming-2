@@ -87,3 +87,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $file = $_FILES['event_image'];
             $finfo = new finfo(FILEINFO_MIME_TYPE);
             $mime = $finfo->file($file['tmp_name']);
+ $allowed = [
+                'image/jpeg' => 'jpg',
+                'image/png' => 'png',
+                'image/gif' => 'gif'
+            ];
+
+            if (!isset($allowed[$mime])) {
+                $errors[] = 'Only JPG, PNG, and GIF images are allowed';
+            }
+
+            if ($file['size'] > 5 * 1024 * 1024) {
+                $errors[] = 'Image must be less than 5MB';
+            }
+
+            if (empty($errors)) {
+                $ext = $allowed[$mime];
+                $filename = bin2hex(random_bytes(16)) . '_' . time() . '.' . $ext;
+                $target = $upload_dir . $filename;
+                if (!move_uploaded_file($file['tmp_name'], $target)) {
+                    $errors[] = 'Failed to save uploaded image';
+                } else {
+                    // store path relative to web root if possible
+                    $image_path = 'uploads/events/' . $filename;
+                }
+            }
+        }
+        
+        // If errors, show them
+        if (!empty($errors)) {
+            echo json_encode(['success' => false, 'message' => implode(', ', $errors)]);
+            exit;
+        }
