@@ -145,3 +145,51 @@ $sql = "INSERT INTO events (
         $facebook = trim($_POST['facebook_url'] ?? '');
         $instagram = trim($_POST['instagram_url'] ?? '');
         $twitter = trim($_POST['twitter_url'] ?? '');
+        
+        // Early bird details
+        $early_bird_enabled = isset($_POST['early_bird_check']) ? 1 : 0;
+        $early_bird_price = $early_bird_enabled ? floatval($_POST['early_price'] ?? 0) : null;
+        $early_bird_deadline = $early_bird_enabled ? ($_POST['early_deadline'] ?? null) : null;
+        
+        // Execute
+        $stmt->execute([
+            ':title' => $title,
+            ':category' => $category,
+            ':description' => $description,
+            ':tags' => $tags,
+            ':event_date' => $event_date,
+            ':event_time' => $event_time,
+            ':location' => $location,
+            ':full_address' => $full_address,
+            ':event_type' => $event_type,
+            ':duration' => $duration,
+            ':ticket_type' => $ticket_type,
+            ':ticket_price' => $ticket_price,
+            ':ticket_quantity' => $ticket_quantity,
+            ':early_bird_enabled' => $early_bird_enabled,
+            ':early_bird_price' => $early_bird_price,
+            ':early_bird_deadline' => $early_bird_deadline,
+            ':organizer_name' => $organizer_name,
+            ':organizer_email' => $organizer_email,
+            ':organizer_phone' => $organizer_phone,
+            ':website' => $website,
+            ':facebook_url' => $facebook,
+            ':instagram_url' => $instagram,
+            ':twitter_url' => $twitter,
+            ':event_image' => $image_path
+        ]);
+        
+        // Success response
+        echo json_encode(['success' => true, 'message' => 'Event submitted successfully!']);
+        
+    } catch (PDOException $e) {
+        // Log detailed error server-side, but return a generic message to client
+        error_log('post-event.php PDOException: ' . $e->getMessage());
+        echo json_encode(['success' => false, 'message' => 'Server error while saving event']);
+    }
+} else {
+    // Not a POST request
+    header('Content-Type: application/json');
+    echo json_encode(['success' => false, 'message' => 'Invalid request method']);
+}
+?>
