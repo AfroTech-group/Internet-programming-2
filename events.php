@@ -28,3 +28,4 @@ if ($event_type) {
     $whereConditions[] = "event_type = :event_type";
     $params[':event_type'] = $event_type;
 }
+$whereClause = implode(' AND ', $whereConditions);
