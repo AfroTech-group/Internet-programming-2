@@ -38,3 +38,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+?><!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sign up — HabeshaEvents</title>
+    <link rel="stylesheet" href="/afro/theme.css">
+</head>
+<body class="auth-page">
+<div class="auth-card">
+    <div class="auth-logo">
+        <a href="/afro/index.php">HABESHA<span>EVENTS</span></a>
+        <p>Create your free account today.</p>
+    </div>
+
+    <?php if (!empty($errors)): ?>
+        <div class="auth-errors"><?php echo htmlspecialchars(implode(' · ', $errors)); ?></div>
+    <?php endif; ?>
+
+    <form method="post" id="signup-form" novalidate>
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(csrf_token()); ?>">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" name="username" required autocomplete="username"
+                   value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" placeholder="cooluser123">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required autocomplete="email"
+                   value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+            <label>Full Name <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+            <input type="text" name="full_name"
+                   value="<?php echo htmlspecialchars($_POST['full_name'] ?? ''); ?>" placeholder="Abebe Girma">
+        </div>
+        <div class="form-group">
+            <label>Phone <span style="color:var(--text-muted);font-weight:400">(optional)</span></label>
+            <input type="text" name="phone"
+                   value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>" placeholder="+251 9...">
+        </div>
