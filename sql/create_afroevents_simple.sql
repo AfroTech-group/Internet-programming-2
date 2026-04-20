@@ -1,7 +1,3 @@
--- create_afroevents_simple.sql
--- Simple, effective schema for AfroEvents (no email verification, no geolocation)
--- Copy/paste into MySQL (phpMyAdmin SQL tab or mysql CLI)
-
 -- 1) Create database
 CREATE DATABASE IF NOT EXISTS afroevents_db
   CHARACTER SET utf8mb4
