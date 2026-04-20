@@ -8,3 +8,9 @@ if (!is_logged_in() || (current_user()['role'] ?? '') !== 'admin') {
     echo 'Forbidden';
     exit;
 }
+
+try{
+    $stmt= $pdo->prepare("SELECT id, user_id, title, category, start_at, location, event_image, created_at FROM events WHERE status = 'pending' ORDER BY created_at ASC");
+    $stmt->execute();
+    $pending = $stmt->fetchAll();
+}
