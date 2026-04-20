@@ -29,3 +29,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+?><!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Log in — HabeshaEvents</title>
+    <link rel="stylesheet" href="/afro/theme.css">
+</head>
+<body class="auth-page">
+<div class="auth-card">
+    <div class="auth-logo">
+        <a href="/afro/index.php">HABESHA<span>EVENTS</span></a>
+        <p>Welcome back! Sign in to your account.</p>
+    </div>
+
+    <?php if (!empty($errors)): ?>
+        <div class="auth-errors"><?php echo htmlspecialchars(implode(' · ', $errors)); ?></div>
+    <?php endif; ?>
