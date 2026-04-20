@@ -108,9 +108,6 @@ CREATE TABLE IF NOT EXISTS reviews (
   FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Optional: full-text index for searching events (MySQL 5.6+ supports InnoDB fulltext)
--- Uncomment if your MySQL supports fulltext on InnoDB
--- ALTER TABLE events ADD FULLTEXT INDEX ft_title_description_tags (title, description, tags);
 
 -- NOTE: For security, do not insert plaintext admin passwords here. Create admin with a hashed password.
 -- Example (generate password hash with PHP CLI):
