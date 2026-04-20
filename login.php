@@ -47,3 +47,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if (!empty($errors)): ?>
         <div class="auth-errors"><?php echo htmlspecialchars(implode(' · ', $errors)); ?></div>
     <?php endif; ?>
+
+    <form method="post" id="login-form">
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(csrf_token()); ?>">
+        <div class="form-group">
+            <label>Username or Email</label>
+            <input type="text" name="identifier" required autocomplete="username"
+                   value="<?php echo htmlspecialchars($_POST['identifier'] ?? ''); ?>"
+                   placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" required autocomplete="current-password" placeholder="••••••••">
+        </div>
+        <button type="submit" class="auth-submit">Log in</button>
+    </form>
+
+    <p class="auth-footer">Don't have an account? <a href="/afro/signup.php">Sign up</a></p>
+</div>
+<script src="/afro/login.js"></script>
+</body>
+</html>
