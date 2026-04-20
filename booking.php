@@ -71,6 +71,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $created = htmlspecialchars($b['created_at']);
                 $eventLink = isset($b['event_id']) ? ("events.php#event-" . intval($b['event_id'])) : '#';
             ?>
+    <tr>
+                    <td><?php echo $ref; ?></td>
+                    <td><a href="<?php echo $eventLink; ?>"><?php echo $eventTitle; ?></a></td>
+                    <td><?php echo $eventDate; ?></td>
+                    <td><?php echo $qty; ?></td>
+                    <td><?php echo $unit; ?></td>
+                    <td><?php echo $total; ?></td>
+                    <td class="<?php echo $payment === 'paid' ? 'status-paid' : ($payment === 'pending' ? 'status-pending' : 'status-failed'); ?>"><?php echo $payment; ?></td>
+                    <td><?php echo $bookingStatus; ?></td>
+                    <td><?php echo $created; ?></td>
+                </tr>
  </main>
 </body>
 </html>             
