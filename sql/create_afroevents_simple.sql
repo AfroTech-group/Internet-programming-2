@@ -108,11 +108,4 @@ CREATE TABLE IF NOT EXISTS reviews (
   FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
--- NOTE: For security, do not insert plaintext admin passwords here. Create admin with a hashed password.
--- Example (generate password hash with PHP CLI):
--- & 'C:\\xampp\\php\\php.exe' -r "echo password_hash('admin123', PASSWORD_DEFAULT).PHP_EOL;"
--- Then insert the admin user replacing <HASH> with the generated hash:
--- INSERT INTO users (username, email, password_hash, full_name, role, status) VALUES ('admin','admin@afroevents.com','<HASH>','Administrator','admin','active');
-
 -- End of schema
