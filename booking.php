@@ -82,9 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <td><?php echo $bookingStatus; ?></td>
                     <td><?php echo $created; ?></td>
                 </tr>
+                 <?php endforeach; ?>
                   </tbody>
         </table>
+    <?php endif; ?>
  </main>
+<script src="/afro/common.js"></script>
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
 </body>
 </html>             
 
