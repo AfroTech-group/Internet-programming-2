@@ -79,3 +79,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="text" name="phone"
                    value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>" placeholder="+251 9...">
         </div>
+ <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="password" required autocomplete="new-password" placeholder="Min. 6 characters">
+        </div>
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input type="password" name="password_confirm" required autocomplete="new-password" placeholder="Repeat password">
+        </div>
+        <button type="submit" class="auth-submit">Create Account</button>
+    </form>
+
+    <p class="auth-footer">Already have an account? <a href="/afro/login.php">Log in</a></p>
+</div>
+<script src="/afro/signup.js"></script>
+</body>
+</html>
