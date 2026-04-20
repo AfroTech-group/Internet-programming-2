@@ -82,6 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <td><?php echo $bookingStatus; ?></td>
                     <td><?php echo $created; ?></td>
                 </tr>
+                  </tbody>
+        </table>
  </main>
 </body>
 </html>             
