@@ -38,11 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="/afro/theme.css">
 </head>
 <body>
+    <?php require_once __DIR__ . '/includes/header.php'; ?>
 <main class="container">
     <h1>Your Bookings</h1>
     <p style="color:var(--text-muted);margin-bottom:20px;font-size:0.9rem">Bookings you have made. Empty if none yet.</p>
-<div style="background:#f8f9fa;border:1px solid #e9ecef;padding:16px;border-radius:6px">No bookings found.</div>
-<table class="bookings">
+ <?php if (empty($bookings)): ?>
+        <div style="background:#f8f9fa;border:1px solid #e9ecef;padding:16px;border-radius:6px">No bookings found.</div>
+    <?php else: ?>
             <thead>
                 <tr>
                     <th>Reference</th>
@@ -57,6 +59,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </tr>
             </thead>
             <tbody>
+     <?php foreach ($bookings as $b):
+                $ref = htmlspecialchars($b['booking_reference']);
+                $eventTitle = htmlspecialchars($b['event_title'] ?? 'Event removed');
+                $eventDate = !empty($b['event_start']) ? date('F j, Y g:i A', strtotime($b['event_start'])) : '-';
+                $qty = intval($b['quantity']);
+                $unit = is_null($b['unit_price']) ? 'ETB 0.00' : 'ETB ' . number_format($b['unit_price'], 2);
+                $total = 'ETB ' . number_format($b['total_amount'], 2);
+                $payment = htmlspecialchars($b['payment_status']);
+                $bookingStatus = htmlspecialchars($b['booking_status']);
+                $created = htmlspecialchars($b['created_at']);
+                $eventLink = isset($b['event_id']) ? ("events.php#event-" . intval($b['event_id'])) : '#';
+            ?>
  </main>
 </body>
 </html>             
