@@ -19,3 +19,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL))           $errors[] = 'Provide a valid email address.';
     if (strlen($password) < 6)                                $errors[] = 'Password must be at least 6 characters.';
     if ($password !== $password_confirm)                      $errors[] = 'Passwords do not match.';
+  if (empty($errors)) {
+        try {
+            $stmt = $pdo->prepare('SELECT id FROM users WHERE username=:u OR email=:e LIMIT 1');
+            $stmt->execute([':u'=>$username, ':e'=>$email]);
+            if ($stmt->fetch()) {
+                $errors[] = 'Username or email already in use.';
+            } else {
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $ins  = $pdo->prepare('INSERT INTO users (username, email, password_hash, full_name, phone) VALUES (:u,:e,:p,:f,:ph)');
+                $ins->execute([':u'=>$username,':e'=>$email,':p'=>$hash,':f'=>$full_name?:null,':ph'=>$phone?:null]);
+                login_user($pdo->lastInsertId());
+                header('Location: /afro/index.php'); exit;
+            }
+        } catch (PDOException $e) {
+            error_log('signup.php: ' . $e->getMessage());
+            $errors[] = 'Server error, try again later.';
+        }
+    }
+}
