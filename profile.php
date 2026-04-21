@@ -80,6 +80,26 @@ $saved = isset($_GET['saved']);
  <link rel="stylesheet" href="/afro/theme.css">
 </head>
 <body>
+ <?php require_once __DIR__ . '/includes/header.php'; ?>
+<div class="profile-page">
+    <div class="profile-hero">
+    <div class="profile-avatar-wrap">
+            <?php if ($avatarUrl): ?>
+                <img src="<?php echo htmlspecialchars($avatarUrl); ?>" alt="avatar" class="profile-avatar-img" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,255,255,0.5)">
+            <?php else: ?>
+                <div class="profile-avatar-initial"><?php echo strtoupper(htmlspecialchars(substr($user['username'],0,1))); ?></div>
+            <?php endif; ?>
+        </div>
+        <div class="profile-hero-info">
+            <h1><?php echo htmlspecialchars($user['username']); ?></h1>
+            <p><?php echo htmlspecialchars($user['email']); ?></p>
+            <?php if (!empty($user['full_name'])): ?>
+                <p style="opacity:0.7;font-size:0.85rem;margin-top:2px"><?php echo htmlspecialchars($user['full_name']); ?></p>
+            <?php endif; ?>
+        </div>
+    </div>
+    </div>  
+
 <script>
 // Tab switching
 document.querySelectorAll('.tab-btn').forEach(function(btn){
