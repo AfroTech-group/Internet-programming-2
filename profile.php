@@ -98,6 +98,17 @@ $saved = isset($_GET['saved']);
             <?php endif; ?>
         </div>
     </div>
+     <div class="profile-tabs">
+        <button class="tab-btn <?php echo $activeTab==='profile'?'active':''; ?>" data-tab="profile">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            Edit Profile
+        </button>
+        <button class="tab-btn <?php echo $activeTab==='bookings'?'active':''; ?>" data-tab="bookings">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Booking History
+            <?php if (count($bookings)): ?><span style="background:var(--green);color:white;border-radius:50px;padding:1px 7px;font-size:0.75rem;margin-left:4px"><?php echo count($bookings); ?></span><?php endif; ?>
+        </button>
+    </div>
     </div>  
 
 <script>
