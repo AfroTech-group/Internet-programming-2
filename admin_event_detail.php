@@ -91,3 +91,153 @@ try {
                 <?php echo nl2br(htmlspecialchars($event['description'])); ?>
             </div>
         </div>
+
+    <div class="detail-section">
+            <h3>Event Details</h3>
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <div class="detail-label">Category</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($event['category']); ?></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Date & Time</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($event['start_at']); ?></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Location</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($event['location']); ?></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Event Type</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($event['event_type'] ?: 'In-person'); ?></div>
+                </div>
+                <?php if ($event['duration']): ?>
+                <div class="detail-item">
+                    <div class="detail-label">Duration</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($event['duration']); ?></div>
+                </div>
+                <?php endif; ?>
+                <?php if ($event['full_address']): ?>
+                <div class="detail-item">
+                    <div class="detail-label">Full Address</div>
+                    <div class="detail-value"><?php echo nl2br(htmlspecialchars($event['full_address'])); ?></div>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <?php if ($event['tags']): ?>
+        <div class="detail-section">
+            <h3>Tags</h3>
+            <div class="detail-value"><?php echo htmlspecialchars($event['tags']); ?></div>
+        </div>
+        <?php endif; ?>
+
+        <div class="detail-section">
+            <h3>Ticket Information</h3>
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <div class="detail-label">Ticket Type</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($event['ticket_type'] ?: 'Free'); ?></div>
+                </div>
+                <?php if ($event['ticket_price']): ?>
+                <div class="detail-item">
+                    <div class="detail-label">Price</div>
+                    <div class="detail-value">$<?php echo number_format($event['ticket_price'], 2); ?></div>
+                </div>
+                <?php endif; ?>
+                <?php if ($event['ticket_quantity']): ?>
+                <div class="detail-item">
+                    <div class="detail-label">Available Tickets</div>
+                    <div class="detail-value"><?php echo (int)$event['ticket_quantity']; ?></div>
+                </div>
+                <?php endif; ?>
+                <?php if ($event['early_bird_enabled']): ?>
+                <div class="detail-item">
+                    <div class="detail-label">Early Bird Price</div>
+                    <div class="detail-value">$<?php echo number_format($event['early_bird_price'], 2); ?></div>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <h3>Organizer Information</h3>
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <div class="detail-label">Organizer Name</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($event['organizer_name'] ?: $event['creator_name'] ?: 'Not specified'); ?></div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Organizer Email</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($event['organizer_email'] ?: $event['creator_email'] ?: 'Not specified'); ?></div>
+                </div>
+                <?php if ($event['organizer_phone']): ?>
+                <div class="detail-item">
+                    <div class="detail-label">Organizer Phone</div>
+                    <div class="detail-value"><?php echo htmlspecialchars($event['organizer_phone']); ?></div>
+                </div>
+                <?php endif; ?>
+                <?php if ($event['website']): ?>
+                <div class="detail-item">
+                    <div class="detail-label">Website</div>
+                    <div class="detail-value"><a href="<?php echo htmlspecialchars($event['website']); ?>" target="_blank"><?php echo htmlspecialchars($event['website']); ?></a></div>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <?php if ($event['facebook_url'] || $event['instagram_url'] || $event['twitter_url']): ?>
+        <div class="detail-section">
+            <h3>Social Media</h3>
+            <div class="detail-grid">
+                <?php if ($event['facebook_url']): ?>
+                <div class="detail-item">
+                    <div class="detail-label">Facebook</div>
+                    <div class="detail-value"><a href="<?php echo htmlspecialchars($event['facebook_url']); ?>" target="_blank">View Page</a></div>
+                </div>
+                <?php endif; ?>
+                <?php if ($event['instagram_url']): ?>
+                <div class="detail-item">
+                    <div class="detail-label">Instagram</div>
+                    <div class="detail-value"><a href="<?php echo htmlspecialchars($event['instagram_url']); ?>" target="_blank">View Profile</a></div>
+                </div>
+                <?php endif; ?>
+                <?php if ($event['twitter_url']): ?>
+                <div class="detail-item">
+                    <div class="detail-label">Twitter</div>
+                    <div class="detail-value"><a href="<?php echo htmlspecialchars($event['twitter_url']); ?>" target="_blank">View Profile</a></div>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <?php if ($event['status'] === 'pending'): ?>
+        <div class="actions">
+            <h3>Admin Actions</h3>
+            <form method="post" action="/afro/admin_action.php">
+                <input type="hidden" name="event_id" value="<?php echo (int)$event['id']; ?>">
+                <input type="hidden" name="action" value="approve">
+                <button class="btn" style="background:#28a745;color:white">Approve Event</button>
+            </form>
+            <form method="post" action="/afro/admin_action.php">
+                <input type="hidden" name="event_id" value="<?php echo (int)$event['id']; ?>">
+                <input type="hidden" name="action" value="reject">
+                <button class="btn" style="background:#dc3545;color:white">Reject Event</button>
+            </form>
+        </div>
+        <?php else: ?>
+        <div class="actions">
+            <p style="color:#666;">This event has already been <?php echo htmlspecialchars($event['status']); ?>.</p>
+            <a href="/afro/admin.php" class="btn">Back to Admin Panel</a>
+        </div>
+        <?php endif; ?>
+
+    <?php else: ?>
+        <p>Event not found.</p>
+        <a href="/afro/admin.php" class="btn">Back to Admin Panel</a>
+    <?php endif; ?>
+</main>
+</body>
+</html>
