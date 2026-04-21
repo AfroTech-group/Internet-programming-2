@@ -109,6 +109,62 @@ $saved = isset($_GET['saved']);
             <?php if (count($bookings)): ?><span style="background:var(--green);color:white;border-radius:50px;padding:1px 7px;font-size:0.75rem;margin-left:4px"><?php echo count($bookings); ?></span><?php endif; ?>
         </button>
     </div>
+    <!-- Edit Profile Panel -->
+    <div class="tab-panel <?php echo $activeTab==='profile'?'active':''; ?>" id="panel-profile">
+        <?php if ($saved): ?>
+            <div style="background:#f0fff4;border:1px solid #9ae6b4;color:#276749;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:0.875rem">
+                ✓ Profile updated successfully!
+            </div>
+        <?php endif; ?>
+        <?php if (!empty($errors)): ?>
+            <div class="errors-box"><?php echo htmlspecialchars(implode(' · ', $errors)); ?></div>
+        <?php endif; ?>
+
+        <div class="profile-form-card">
+            <form method="post" enctype="multipart/form-data">
+                <!-- Avatar preview -->
+                <div class="form-group">
+                    <label>Profile Picture</label>
+                    <div class="avatar-preview-wrap">
+                        <?php if ($avatarUrl): ?>
+                            <img src="<?php echo htmlspecialchars($avatarUrl); ?>" class="avatar-preview" id="avatar-preview" alt="avatar">
+                        <?php else: ?>
+                            <div class="avatar-preview-initial" id="avatar-preview-initial"><?php echo strtoupper(htmlspecialchars(substr($user['username'],0,1))); ?></div>
+                        <?php endif; ?>
+                        <div>
+                            <input type="file" name="avatar" accept="image/*" id="avatar-input" style="display:none">
+                            <button type="button" onclick="document.getElementById('avatar-input').click()" style="padding:8px 16px;border:1px solid var(--border);border-radius:8px;background:var(--bg);cursor:pointer;font-size:0.85rem;font-weight:500">
+                                Change Photo
+                            </button>
+                            <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">JPG, PNG, GIF or WEBP · Max 2MB</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="full_name" value="<?php echo htmlspecialchars($user['full_name'] ?? ''); ?>" placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" name="phone" value="<?php echo htmlspecialchars($user['phone'] ?? ''); ?>" placeholder="+251 ...">
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" value="<?php echo htmlspecialchars($user['username']); ?>" disabled style="opacity:0.6;cursor:not-allowed">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" value="<?php echo htmlspecialchars($user['email']); ?>" disabled style="opacity:0.6;cursor:not-allowed">
+                </div>
+
+                <button type="submit" class="btn-save">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                    Save Changes
+                </button>
+            </form>
+        </div>
+    </div>
     </div>  
 
 <script>
