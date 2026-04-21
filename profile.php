@@ -1,3 +1,77 @@
+<?php
+require_once __DIR__ . '/auth.php';
+require_login();
+$user = current_user();
+
+$errors = [];
+$success = false;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $full_name = trim($_POST['full_name'] ?? '');
+    $phone     = trim($_POST['phone'] ?? '');
+    $avatar_path = null;
+
+    if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+        $file  = $_FILES['avatar'];
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $mime  = $finfo->file($file['tmp_name']);
+        $allowed = ['image/jpeg'=>'jpg','image/png'=>'png','image/gif'=>'gif','image/webp'=>'webp'];
+        if (!isset($allowed[$mime])) {
+            $errors[] = 'Avatar must be JPG/PNG/GIF/WEBP';
+        } elseif ($file['size'] > 2*1024*1024) {
+            $errors[] = 'Avatar must be under 2MB';
+        } else {
+            $ext    = $allowed[$mime];
+            $fn     = 'avatar_' . $user['id'] . '_' . time() . '.' . $ext;
+            $target = __DIR__ . '/uploads/users/' . $fn;
+            if (!is_dir(__DIR__ . '/uploads/users/')) mkdir(__DIR__ . '/uploads/users/', 0755, true);
+            if (move_uploaded_file($file['tmp_name'], $target)) {
+                $avatar_path = 'uploads/users/' . $fn;
+            } else {
+                $errors[] = 'Failed to save avatar — check folder permissions';
+            }
+        }
+    }
+
+    if (empty($errors)) {
+        $sql = 'UPDATE users SET full_name=:fn, phone=:ph' . ($avatar_path ? ', avatar=:av' : '') . ' WHERE id=:id';
+        $stmt = $pdo->prepare($sql);
+        $params = [':fn'=>$full_name, ':ph'=>$phone, ':id'=>$user['id']];
+        if ($avatar_path) $params[':av'] = $avatar_path;
+        $stmt->execute($params);
+        $success = true;
+        header('Location: /afro/profile.php?tab=profile&saved=1');
+        exit;
+    }
+}
+
+// Reload user
+$stmt = $pdo->prepare('SELECT id, username, email, full_name, phone, avatar FROM users WHERE id=:id LIMIT 1');
+$stmt->execute([':id' => $user['id']]);
+$user = $stmt->fetch();
+
+// Bookings
+$bookings = [];
+try {
+    $bs = $pdo->prepare("SELECT b.booking_reference, b.quantity, b.unit_price, b.total_amount, b.payment_status, b.booking_status, b.created_at, b.event_id, e.title AS event_title, e.start_at AS event_start FROM bookings b LEFT JOIN events e ON b.event_id=e.id WHERE b.user_id=:uid ORDER BY b.created_at DESC");
+    $bs->execute([':uid' => $user['id']]);
+    $bookings = $bs->fetchAll();
+} catch (Exception $e) { error_log('profile bookings: ' . $e->getMessage()); }
+
+// Avatar URL helper
+$avatarRaw = $user['avatar'] ?? '';
+$avatarRaw = ltrim($avatarRaw, '/');
+if ($avatarRaw && strpos($avatarRaw, 'afro/') === 0) {
+    $avatarUrl = '/' . $avatarRaw;
+} elseif ($avatarRaw) {
+    $avatarUrl = '/afro/' . $avatarRaw;
+} else {
+    $avatarUrl = null;
+}
+
+$activeTab = $_GET['tab'] ?? 'profile';
+$saved = isset($_GET['saved']);
+?>
 <!doctype html>
 <html lang="en">
 <head>
