@@ -165,6 +165,53 @@ $saved = isset($_GET['saved']);
             </form>
         </div>
     </div>
+    <div class="tab-panel <?php echo $activeTab==='bookings'?'active':''; ?>" id="panel-bookings">
+        <?php if (empty($bookings)): ?>
+            <div style="background:var(--white);border:1px solid var(--border);padding:32px;border-radius:var(--radius);text-align:center;color:var(--text-muted)">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px;display:block;opacity:0.4"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                No bookings yet. <a href="/afro/events.php" style="color:var(--green);font-weight:600">Browse events →</a>
+            </div>
+        <?php else: ?>
+            <div class="bookings-table-wrap">
+                <table class="bookings">
+                    <thead>
+                        <tr>
+                            <th>Reference</th>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($bookings as $b):
+                        $ref   = htmlspecialchars($b['booking_reference']);
+                        $title = htmlspecialchars($b['event_title'] ?? 'Event removed');
+                        $date  = !empty($b['event_start']) ? date('M j, Y', strtotime($b['event_start'])) : '—';
+                        $qty   = intval($b['quantity']);
+                        $total = 'ETB ' . number_format($b['total_amount'], 2);
+                        $pay   = htmlspecialchars($b['payment_status']);
+                        $bst   = htmlspecialchars($b['booking_status']);
+                        $link  = isset($b['event_id']) ? 'events.php#event-' . intval($b['event_id']) : '#';
+                        $payClass = $pay === 'paid' ? 'status-paid' : ($pay === 'pending' ? 'status-pending' : 'status-failed');
+                    ?>
+                        <tr>
+                            <td style="font-family:monospace;font-size:0.8rem"><?php echo $ref; ?></td>
+                            <td><a href="<?php echo $link; ?>" style="color:var(--green);font-weight:500"><?php echo $title; ?></a></td>
+                            <td><?php echo $date; ?></td>
+                            <td><?php echo $qty; ?></td>
+                            <td style="font-weight:600"><?php echo $total; ?></td>
+                            <td class="<?php echo $payClass; ?>"><?php echo $pay; ?></td>
+                            <td><?php echo $bst; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
+    </div>
     </div>  
 
 <script>
