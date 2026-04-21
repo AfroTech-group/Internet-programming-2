@@ -77,6 +77,7 @@ $saved = isset($_GET['saved']);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+     <title>Profile — <?php echo htmlspecialchars($user['username']); ?></title>
  <link rel="stylesheet" href="/afro/theme.css">
 </head>
 <body>
@@ -213,7 +214,7 @@ $saved = isset($_GET['saved']);
         <?php endif; ?>
     </div>
     </div>  
-
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
 <script>
 // Tab switching
 document.querySelectorAll('.tab-btn').forEach(function(btn){
