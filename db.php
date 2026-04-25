@@ -1,6 +1,4 @@
 <?php
-// db.php - create a PDO connection using values from config.php/.env
-
 require_once __DIR__ . '/config.php';
 
 $db_host = env('DB_HOST', 'localhost');
