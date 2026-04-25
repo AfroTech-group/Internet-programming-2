@@ -1,7 +1,4 @@
 <?php
-// config.php - simple .env loader and env() helper
-// Usage: require_once __DIR__ . '/config.php'; $dbHost = env('DB_HOST');
-
 function load_dotenv($path)
 {
     if (!file_exists($path)) {
@@ -17,7 +14,7 @@ function load_dotenv($path)
         list($name, $value) = explode('=', $line, 2);
         $name = trim($name);
         $value = trim($value);
-        // remove surrounding quotes
+
         if ((substr($value, 0, 1) === '"' && substr($value, -1) === '"') || (substr($value, 0, 1) === "'" && substr($value, -1) === "'")) {
             $value = substr($value, 1, -1);
         }
