@@ -22,8 +22,6 @@ function load_dotenv($path)
     }
     return $data;
 }
-
-// load .env from project root (same dir as this file)
 $__APP_ENV = load_dotenv(__DIR__ . DIRECTORY_SEPARATOR . '.env');
 
 function env($key, $default = null)
