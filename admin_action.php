@@ -1,5 +1,4 @@
 <?php
-// admin_action.php - handle approve/reject actions for events
 require_once __DIR__ . '/auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
