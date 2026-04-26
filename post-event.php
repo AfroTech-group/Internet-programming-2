@@ -1,8 +1,6 @@
 <?php
-// post-event.php - Serve the post-event form on GET and handle event submission on POST
 require_once __DIR__ . '/auth.php';
 
-// Create upload directory if it doesn't exist
 $upload_dir = __DIR__ . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'events' . DIRECTORY_SEPARATOR;
 if (!file_exists($upload_dir)) {
     mkdir($upload_dir, 0755, true);
