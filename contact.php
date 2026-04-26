@@ -12,12 +12,10 @@ $map = [
 ];
 $html = str_replace(array_keys($map), array_values($map), $html);
 
-// Add theme.css if not present
 if (strpos($html, 'theme.css') === false) {
 	$html = str_replace('</head>', '<link rel="stylesheet" href="/afro/theme.css"></head>', $html);
 }
 
-// Strip old static nav
 $html = preg_replace('/<nav class="navbar"[^>]*>.*?<\/nav>/s', '', $html);
 
 // Strip old static footer
