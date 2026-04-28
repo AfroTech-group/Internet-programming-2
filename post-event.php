@@ -32,24 +32,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         'support.html' => 'support.php',
         'contact.html' => 'contact.php'
     ];
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    try {
-        // Connect to database
-        $pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=utf8mb4", $db_user, $db_pass);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        // Basic JSON response wrapper
-        header('Content-Type: application/json');
 
-        // Verify CSRF token
-        $posted_token = $_POST['csrf_token'] ?? '';
-        if (empty($posted_token) || empty($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $posted_token)) {
-            echo json_encode(['success' => false, 'message' => 'Invalid session or invalid CSRF token']);
-            exit;
-        }
+// Update links from .html to .php
+    $html = str_replace(array_keys($map), array_values($map), $html);
 
-        // Validate required fields
+    // Ensure theme.css is present (other PHP wrappers add this when missing)
+    if (strpos($html, 'theme.css') === false) {
+        $html = str_replace('</head>', '<link rel="stylesheet" href="/afro/theme.css"></head>', $html);
+    }
+
+    // Capture header/footer rendered by includes so we can inject them like other pages
+    ob_start();
+    include __DIR__ . '/includes/header.php';
+    $header_html = ob_get_clean();
+
+    ob_start();
+    include __DIR__ . '/includes/footer.php';
+    $footer_html = ob_get_clean();
+
+    $html = preg_replace('/(<body[^>]*>)/i', "$1\n" . $header_html, $html, 1);
+
+    $html = preg_replace('/<nav class="navbar"[^>]*>.*?<\/nav>/s', '', $html);
+
+    $html = preg_replace('/<footer class="footer"[^>]*>.*?<\/footer>/s', $footer_html, $html);
+    if (strpos($html, $footer_html) === false) {
+        $html = str_replace('</body>', $footer_html . '</body>', $html);
+    }
+    if (!is_logged_in()) {
+        $notice = '<div style="background:#fff3cd;padding:12px;border:1px solid #ffeeba;margin:12px;border-radius:4px;max-width:1000px;margin-left:auto;margin-right:auto;">You are viewing the event submission form. You must <a href="/afro/login.php">log in</a> to submit an event.</div>';
+       
+        $html = preg_replace('/(<body[^>]*>)/i', "\\1\n" . $notice, $html, 1);
+    }
+
+    
         $errors = [];
         
         $title = trim($_POST['event_title'] ?? '');
@@ -84,7 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $ticket_price = null;
         }
         
-        // Handle image upload (if present)
         $image_path = null;
         if (isset($_FILES['event_image']) && $_FILES['event_image']['error'] === UPLOAD_ERR_OK) {
             $file = $_FILES['event_image'];
@@ -99,11 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!isset($allowed[$mime])) {
                 $errors[] = 'Only JPG, PNG, and GIF images are allowed';
             }
-
-            if ($file['size'] > 5 * 1024 * 1024) {
-                $errors[] = 'Image must be less than 5MB';
-            }
-
             if (empty($errors)) {
                 $ext = $allowed[$mime];
                 $filename = bin2hex(random_bytes(16)) . '_' . time() . '.' . $ext;
@@ -111,13 +120,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (!move_uploaded_file($file['tmp_name'], $target)) {
                     $errors[] = 'Failed to save uploaded image';
                 } else {
-                    // store path relative to web root if possible
                     $image_path = 'uploads/events/' . $filename;
                 }
             }
         }
         
-        // If errors, show them
         if (!empty($errors)) {
             echo json_encode(['success' => false, 'message' => implode(', ', $errors)]);
             exit;
@@ -137,8 +144,7 @@ $sql = "INSERT INTO events (
         )";
         
         $stmt = $pdo->prepare($sql);
-        
-        // Get optional fields
+    
         $tags = trim($_POST['event_tags'] ?? '');
         $full_address = trim($_POST['event_address'] ?? '');
         $event_type = $_POST['event_type'] ?? 'in-person';
@@ -149,7 +155,6 @@ $sql = "INSERT INTO events (
         $instagram = trim($_POST['instagram_url'] ?? '');
         $twitter = trim($_POST['twitter_url'] ?? '');
         
-        // Early bird details
         $early_bird_enabled = isset($_POST['early_bird_check']) ? 1 : 0;
         $early_bird_price = $early_bird_enabled ? floatval($_POST['early_price'] ?? 0) : null;
         $early_bird_deadline = $early_bird_enabled ? ($_POST['early_deadline'] ?? null) : null;
