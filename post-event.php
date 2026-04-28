@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         'contact.html' => 'contact.php'
     ];
 
-// Update links from .html to .php
+ // Update links from .html to .php
     $html = str_replace(array_keys($map), array_values($map), $html);
 
     // Ensure theme.css is present (other PHP wrappers add this when missing)
@@ -50,31 +50,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     include __DIR__ . '/includes/footer.php';
     $footer_html = ob_get_clean();
 
+    // Insert header right after opening <body> tag (same approach as index.php)
     $html = preg_replace('/(<body[^>]*>)/i', "$1\n" . $header_html, $html, 1);
 
+    // Hide the static HTML nav (replaced by PHP header) - match the original nav class used in template
     $html = preg_replace('/<nav class="navbar"[^>]*>.*?<\/nav>/s', '', $html);
 
+    // Replace the static footer with PHP footer; if not present, append before </body>
     $html = preg_replace('/<footer class="footer"[^>]*>.*?<\/footer>/s', $footer_html, $html);
     if (strpos($html, $footer_html) === false) {
         $html = str_replace('</body>', $footer_html . '</body>', $html);
     }
+
+    // If user not logged in, show a small notice to prompt login for submission (frontend still enforces)
     if (!is_logged_in()) {
         $notice = '<div style="background:#fff3cd;padding:12px;border:1px solid #ffeeba;margin:12px;border-radius:4px;max-width:1000px;margin-left:auto;margin-right:auto;">You are viewing the event submission form. You must <a href="/afro/login.php">log in</a> to submit an event.</div>';
-       
+        // inject after opening <body>
         $html = preg_replace('/(<body[^>]*>)/i', "\\1\n" . $notice, $html, 1);
     }
+    // Temporary debug helper: log presence of form/submit and submission events to console
+    // Remove this in production after debugging
+    $debugScript = "<script>console.log('post-event debug: form=', !!document.getElementById('post-event-form'), 'submit=', !!document.getElementById('submit-event'));document.addEventListener('submit', function(e){ if (e.target && e.target.id === 'post-event-form') { console.log('post-event: submit event fired', e); } }, true);</script>";
+    $html = str_replace('</body>', $debugScript . '\n</body>', $html);
 
-    
-        $errors = [];
-        
-        $title = trim($_POST['event_title'] ?? '');
-        $category = trim($_POST['event_category'] ?? '');
-        $description = trim($_POST['event_description'] ?? '');
-        $event_date = $_POST['event_date'] ?? '';
-        $event_time = $_POST['event_time'] ?? '';
-        $location = trim($_POST['event_location'] ?? '');
-        $organizer_name = trim($_POST['organizer_name'] ?? '');
-        $organizer_email = trim($_POST['organizer_email'] ?? '');
+    echo $html;
+    exit;
+}
 
          if (empty($title)) $errors[] = 'Event title is required';
         if (empty($category)) $errors[] = 'Category is required';
