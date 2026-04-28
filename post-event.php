@@ -15,17 +15,23 @@ if (isset($_GET['action']) && $_GET['action'] === 'token') {
     echo json_encode(['token' => $_SESSION['csrf_token']]);
     exit;
 }
-// Provide a CSRF token endpoint for the frontend to request
-if (isset($_GET['action']) && $_GET['action'] === 'token') {
-    // generate token
-    if (empty($_SESSION['csrf_token'])) {
-        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-    }
-    header('Content-Type: application/json');
-    echo json_encode(['token' => $_SESSION['csrf_token']]);
-    exit;
-}
 
+// If GET, serve the static form (post-event.html) but update navigation links to PHP and include a small header showing login state
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $tpl = __DIR__ . '/post-event.html';
+    if (!file_exists($tpl)) {
+        echo 'Template not found';
+        exit;
+    }
+    $html = file_get_contents($tpl);
+    $map = [
+        'index.html' => 'index.php',
+        'events.html' => 'events.php',
+        'post-event.html' => 'post-event.php',
+        'features.html' => 'features.php',
+        'support.html' => 'support.php',
+        'contact.html' => 'contact.php'
+    ];
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
