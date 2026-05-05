@@ -15,15 +15,13 @@ $html = str_replace(array_keys($map), array_values($map), $html);
 if (strpos($html, 'theme.css') === false) {
 	$html = str_replace('</head>', '<link rel="stylesheet" href="/afro/theme.css"></head>', $html);
 }
-// Remove static navbar and footer
-$html = preg_replace('/<nav class="navbar"[^>]*>.*?<\/nav>/s', '', $html);
-// then inject dynamic header and footer
-$html = preg_replace('/<footer class="footer"[^>]*>.*?<\/footer>/s', '', $html);
 
+$html = preg_replace('/<nav class="navbar"[^>]*>.*?<\/nav>/s', '', $html);
+$html = preg_replace('/<footer class="footer"[^>]*>.*?<\/footer>/s', '', $html);
 
 ob_start(); include __DIR__ . '/includes/header.php'; $headerHtml = ob_get_clean();
 $html = preg_replace('/(<body[^>]*>)/i', "$1\n" . $headerHtml, $html, 1);
-// from PHP includes into the HTML body.
+
 ob_start(); include __DIR__ . '/includes/footer.php'; $footerHtml = ob_get_clean();
 $html = str_replace('</body>', $footerHtml . '</body>', $html);
 
