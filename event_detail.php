@@ -7,7 +7,7 @@ if ($eventId <= 0) {
     header('Location: /afro/events.php');
     exit;
 }
-
+// adding a try and catch for event handling exceptions
 try {
     $stmt = $pdo->prepare("
         SELECT e.*, u.username, u.email as creator_email, u.full_name as creator_name 
