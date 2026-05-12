@@ -151,7 +151,22 @@ $sql = "INSERT INTO events (
             :early_bird_deadline, :organizer_name, :organizer_email, :organizer_phone,
             :website, :facebook_url, :instagram_url, :twitter_url, :event_image, 'pending'
         )";
-        
+        stmt = $pdo->prepare($sql);
+
+        $tags = trim($_POST['event_tags'] ?? '');
+        $full_address = trim($_POST['event_address'] ?? '');
+        $event_type = $_POST['event_type'] ?? 'in-person';
+        $duration = $_POST['event_duration'] ?? '';
+        $organizer_phone = trim($_POST['organizer_phone'] ?? '');
+        $website = trim($_POST['website'] ?? '');
+        $facebook = trim($_POST['facebook_url'] ?? '');
+        $instagram = trim($_POST['instagram_url'] ?? '');
+        $twitter = trim($_POST['twitter_url'] ?? '');
+        $early_bird_enabled = isset($_POST['early_bird_check']) ? 1 : 0;
+        $early_bird_price = $early_bird_enabled ? floatval($_POST['early_price'] ?? 0) : null;
+        $early_bird_deadline = $early_bird_enabled ? ($_POST['early_deadline'] ?? null) : null;
+
+        $start_at = sprintf('%s %s:00', $event_date, $event_time);
         
         $stmt->execute([
             ':user_id' => $_SESSION['user_id'],
