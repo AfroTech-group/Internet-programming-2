@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         }
     }
 }
-
+// the html part of event_detail
 ?><!doctype html>
 <html lang="en">
 <head>
