@@ -210,4 +210,7 @@ e
     header('Content-Type: application/json');
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
 }
+// Other methods not allowed
+http_response_code(405);
+echo 'Method not allowed';
 ?>
