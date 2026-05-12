@@ -339,13 +339,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             <?php endforeach; ?>
         </div>
         <?php endif; ?>
-
     <?php else: ?>
         <p>Event not found.</p>
         <a href="/afro/events.php" class="btn">Back to Events</a>
     <?php endif; ?>
 </main>
-
 <script>
 // Update total price when quantity changes
 document.addEventListener('DOMContentLoaded', function() {
@@ -366,3 +364,4 @@ document.addEventListener('DOMContentLoaded', function() {
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
 </body>
 </html>
+
