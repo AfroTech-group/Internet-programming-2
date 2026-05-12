@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $ticket_quantity = intval($_POST['free_ticket_quantity'] ?? 200);
             $ticket_price = null;
         }
-        
+        // handle image upload
         $image_path = null;
         if (isset($_FILES['event_image']) && $_FILES['event_image']['error'] === UPLOAD_ERR_OK) {
             $file = $_FILES['event_image'];
