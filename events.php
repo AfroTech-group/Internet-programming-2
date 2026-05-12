@@ -1,7 +1,6 @@
 <?php
 // events.php - render events list from database and allow simple viewing
 require_once __DIR__ . '/auth.php';
-
 // Handle search and filtering
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
 $category = $_GET['category'] ?? '';
@@ -178,7 +177,6 @@ try {
 		<?php endif; ?>
 	</div>
 </main>
-
 <script src="common.js"></script>
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
 </body>
