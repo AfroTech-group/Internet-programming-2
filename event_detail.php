@@ -345,7 +345,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     <?php endif; ?>
 </main>
 <script>
-// Update total price when quantity changes
+// Update total price when quantity changes and at line 364 tells PHP to load and execute the specified file.
 document.addEventListener('DOMContentLoaded', function() {
     const quantityInput = document.getElementById('quantity');
     const totalPriceSpan = document.getElementById('total-price');
@@ -359,9 +359,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-</script>
-
-<?php require_once __DIR__ . '/includes/footer.php'; ?>
+</script> 
+    
+<?php require_once __DIR__ . '/includes/footer.php'; ?> 
 </body>
 </html>
 
