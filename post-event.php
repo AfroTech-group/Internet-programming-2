@@ -76,6 +76,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo $html;
     exit;
 }
+        $errors = [];
+        $title = trim($_POST['event_title'] ?? '');
+        $category = trim($_POST['event_category'] ?? '');
+        $description = trim($_POST['event_description'] ?? '');
+        $event_date = $_POST['event_date'] ?? '';
+        $event_time = $_POST['event_time'] ?? '';
+        $location = trim($_POST['event_location'] ?? '');
+        $organizer_name = trim($_POST['organizer_name'] ?? '');
+        $organizer_email = trim($_POST['organizer_email'] ?? '');
 
          if (empty($title)) $errors[] = 'Event title is required';
         if (empty($category)) $errors[] = 'Category is required';
