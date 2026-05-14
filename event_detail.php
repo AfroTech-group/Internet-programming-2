@@ -250,7 +250,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 <?php endif; ?>
             </div>
         </div>
-
         <?php if ($event['facebook_url'] || $event['instagram_url'] || $event['twitter_url']): ?>
         <div class="detail-section">
             <h3>Connect With Us</h3>
@@ -302,7 +301,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 <form method="post" class="booking-form">
                     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(csrf_token()); ?>">
                     <input type="hidden" name="action" value="book_tickets">
-                    
                     <label for="quantity">Number of Tickets:</label>
                     <input type="number" id="quantity" name="quantity" class="quantity-input" min="1" max="<?php echo $event['ticket_quantity'] ? max(1, $event['ticket_quantity'] - $event['tickets_sold']) : 10; ?>" value="1">
                     
