@@ -195,12 +195,12 @@ $sql = "INSERT INTO events (
             ':event_image' => $image_path
         ]);
 
-        echo json_encode(['success' => true, 'message' => 'Event submitted successfully!']);
+        echo json_encode(['success' => true, 'message' => 'Event is submitted successfully!']);
         
     } catch (PDOException $e) {
         // Log detailed error server-side, but return a generic message to client
         error_log('post-event.php PDOException: ' . $e->getMessage());
-        echo json_encode(['success' => false, 'message' => 'Server error while saving event']);
+        echo json_encode(['success' => false, 'message' => 'Server error while saving the event']);
     }
 } else {
     // Not a POST request
