@@ -65,11 +65,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
             // Generate booking reference
             $bookingReference = 'BK' . strtoupper(uniqid()) . rand(1000, 9999);
             
-            // Calculate total amount
+            // Calculate total amount for ticket 
             $unitPrice = $event['ticket_price'] ?? 0;
             $totalAmount = $unitPrice * $quantity;
             
-            // Insert booking
+            // Insert booking details
             $stmt = $pdo->prepare("
                 INSERT INTO bookings (booking_reference, user_id, event_id, quantity, unit_price, total_amount, payment_status, booking_status)
                 VALUES (:ref, :user_id, :event_id, :quantity, :unit_price, :total_amount, 'pending', 'pending')
