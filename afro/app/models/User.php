@@ -115,3 +115,59 @@ class User
                 WHERE ' . implode(' AND ', $where) . '
                 GROUP BY u.id
                 ORDER BY u.created_at DESC';
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * Return role/status counts for the stats bar.
+     */
+    public function getRoleCounts(): array
+    {
+        $stmt = $this->pdo->query(
+            "SELECT role, status, COUNT(*) AS cnt FROM users GROUP BY role, status"
+        );
+        $rows   = $stmt->fetchAll();
+        $counts = ['total' => 0, 'admin' => 0, 'organizer' => 0, 'user' => 0, 'inactive' => 0];
+        foreach ($rows as $row) {
+            $counts['total'] += (int) $row['cnt'];
+            $counts[$row['role']] = ($counts[$row['role']] ?? 0) + (int) $row['cnt'];
+            if ($row['status'] === 'inactive') {
+                $counts['inactive'] += (int) $row['cnt'];
+            }
+        }
+        return $counts;
+    }
+
+    /**
+     * Hard-delete a user by ID. Returns false if trying to delete self.
+     */
+    public function delete(int $id): bool
+    {
+        $stmt = $this->pdo->prepare('DELETE FROM users WHERE id = :id');
+        return $stmt->execute([':id' => $id]);
+    }
+
+    /**
+     * Check whether an email/username is already taken by another user.
+     */
+    public function emailTaken(string $email, int $excludeId = 0): bool
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT id FROM users WHERE email = :email AND id != :id LIMIT 1'
+        );
+        $stmt->execute([':email' => $email, ':id' => $excludeId]);
+        return (bool) $stmt->fetch();
+    }
+
+    public function usernameTaken(string $username, int $excludeId = 0): bool
+    {
+        $stmt = $this->pdo->prepare(
+            'SELECT id FROM users WHERE username = :username AND id != :id LIMIT 1'
+        );
+        $stmt->execute([':username' => $username, ':id' => $excludeId]);
+        return (bool) $stmt->fetch();
+    }
+}
