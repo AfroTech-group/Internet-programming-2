@@ -98,3 +98,28 @@
             justify-content: center;
             padding: 40px 24px;
             background: #0a0f1e;
+}
+
+        .auth-box {
+            width: 100%;
+            max-width: 420px;
+            animation: authPop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+        }
+
+        @keyframes authPop {
+            from { opacity: 0; transform: translateY(24px) scale(0.96); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .auth-box h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+        .auth-box .auth-sub {
+            color: rgba(255,255,255,0.45);
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+        }
