@@ -53,3 +53,20 @@ function logout_user(): void
     }
     session_destroy();
 }
+
+function require_login(): void
+{
+    if (!is_logged_in()) {
+        header('Location: /afro/?page=login');
+        exit;
+    }
+}
+
+function require_admin(): void
+{
+    if (!is_logged_in() || (current_user()['role'] ?? '') !== 'admin') {
+        http_response_code(403);
+        echo 'Forbidden';
+        exit;
+    }
+}
