@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Habesha Events</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="features.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                <span>HABESHA</span>EVENTS
+            </a>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="events.html" class="nav-link"><i class="fas fa-calendar-check"></i> Events</a>
+                <a href="post-event.html" class="nav-link"><i class="fas fa-plus-circle"></i> Post Event</a>
+                <a href="features.html" class="nav-link active"><i class="fas fa-star"></i> Features</a>
+                <a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Support</a>
+                <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="post-event.html" class="btn btn-primary">Post Event</a>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Features Hero -->
+    <section class="features-hero">
+        <div class="container">
+            <div class="features-hero-content">
+                <h1>Powerful Features for Ethiopian Event Discovery & Management</h1>
+                <p>Discover how Habesha Events makes finding, attending, and hosting events in Ethiopia simple and enjoyable</p>
+                
+                <!-- Main Search Bar -->
+                <div class="features-search">
+                    <div class="search-container">
+                        <div class="search-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <input type="text" id="features-search-input" placeholder="Search for events, categories, or locations in Ethiopia...">
+                        <button class="btn btn-search-features" id="search-button">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                    
+                    <div class="search-filters">
+                        <div class="filter-toggle">
+                            <span>Filter Options</span>
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        
+                        <div class="filter-panel" id="filter-panel">
+                            <div class="filter-row">
+                                <div class="filter-group">
+                                    <label for="filter-price">Price Range</label>
+                                    <div class="price-range">
+                                        <div class="range-inputs">
+                                            <input type="number" id="min-price" placeholder="Min" min="0">
+                                            <span>to</span>
+                                            <input type="number" id="max-price" placeholder="Max" min="0">
+                                        </div>
+                                        <div class="price-options">
+                                            <button class="price-option" data-price="free">Free Only</button>
+                                            <button class="price-option" data-price="0-50">Under ETB 50</button>
+                                            <button class="price-option" data-price="50-100">ETB 50 - 100</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="filter-group">
+                                    <label for="filter-date">Date</label>
+                                    <div class="date-options">
+                                        <button class="date-option active" data-date="all">All Dates</button>
+                                        <button class="date-option" data-date="today">Today</button>
+                                        <button class="date-option" data-date="week">This Week</button>
+                                        <button class="date-option" data-date="month">This Month</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-row">
+                                <div class="filter-group">
+                                    <label for="filter-category">Category</label>
+                                    <select id="filter-category">
+                                        <option value="">All Categories</option>
+                                        <option value="music">Music</option>
+                                        <option value="business">Business</option>
+                                        <option value="art">Art & Culture</option>
+                                        <option value="sports">Sports</option>
+                                        <option value="food">Food & Drink</option>
+                                        <option value="tech">Technology</option>
+                                        <option value="education">Education</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="filter-group">
+                                    <label for="filter-location">Location</label>
+                                    <input type="text" id="filter-location" placeholder="City, State, or Online">
+                                </div>
+                            </div>
+                            
+                            <div class="filter-actions">
+                                <button class="btn btn-outline" id="reset-filters">Reset Filters</button>
+                                <button class="btn btn-primary" id="apply-filters">Apply Filters</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-links">
+                    <a href="events.html" class="quick-link">
+                        <i class="fas fa-calendar-day"></i>
+                        <span>Browse Events</span>
+                    </a>
+                    <a href="post-event.html" class="quick-link">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Post Event</span>
+                    </a>
+                    <a href="#ticketing" class="quick-link">
+                        <i class="fas fa-ticket-alt"></i>
+                        <span>Ticketing</span>
+                    </a>
+                    <a href="#management" class="quick-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>Event Management</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features-grid-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Key Features</h2>
+                <p>Everything you need to discover, attend, and host amazing events in Ethiopia</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" id="search-discovery">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Advanced Search & Discovery</h3>
+                    <p>Find events across Ethiopia that match your interests with our powerful search and filtering system. Filter by category, price, date, location, and more.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Smart search with Ethiopian location suggestions</li>
+                        <li><i class="fas fa-check"></i> Filter free events only</li>
+                        <li><i class="fas fa-check"></i> Price range filtering in ETB</li>
+                        <li><i class="fas fa-check"></i> Location-based recommendations for Ethiopian cities</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card" id="ticketing">
+                    <div class="feature-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Smart Ticketing System</h3>
+                    <p>Secure, easy-to-use ticketing with instant confirmation. Our system automatically updates ticket availability in real-time and supports Ethiopian payment methods.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Real-time ticket availability</li>
+                        <li><i class="fas fa-check"></i> Automatic math calculations in ETB</li>
+                        <li><i class="fas fa-check"></i> Secure payment processing with local options</li>
+                        <li><i class="fas fa-check"></i> Digital ticket delivery via SMS & Email</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card" id="management">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Event Management Tools</h3>
+                    <p>Comprehensive tools for Ethiopian event organizers to create, manage, and promote events with ease.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Easy event creation wizard in Amharic & English</li>
+                        <li><i class="fas fa-check"></i> Attendee management</li>
+                        <li><i class="fas fa-check"></i> Real-time analytics</li>
+                        <li><i class="fas fa-check"></i> Promotion tools for Ethiopian social media</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile-Friendly Experience</h3>
+                    <p>Access Habesha Events on any device. Our responsive design ensures a seamless experience on smartphones, tablets, and desktops across Ethiopia.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Fully responsive design</li>
+                        <li><i class="fas fa-check"></i> Fast loading on mobile networks</li>
+                        <li><i class="fas fa-check"></i> Mobile ticket scanning</li>
+                        <li><i class="fas fa-check"></i> Push notifications</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics & Insights</h3>
+                    <p>Get detailed insights into your event performance with our analytics dashboard tailored for the Ethiopian market.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Attendance tracking</li>
+                        <li><i class="fas fa-check"></i> Revenue reports in ETB</li>
+                        <li><i class="fas fa-check"></i> Audience demographics for Ethiopia</li>
+                        <li><i class="fas fa-check"></i> Engagement metrics</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security & Trust</h3>
+                    <p>Your security is our priority. We use industry-leading security measures to protect your data and transactions in Ethiopia.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> SSL encryption</li>
+                        <li><i class="fas fa-check"></i> Secure payment processing</li>
+                        <li><i class="fas fa-check"></i> Privacy controls compliant with Ethiopian laws</li>
+                        <li><i class="fas fa-check"></i> Verified event listings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works-features">
+        <div class="container">
+            <div class="section-header">
+                <h2>How Our Features Work For You</h2>
+                <p>Whether you're attending or hosting events in Ethiopia, Habesha Events has you covered</p>
+            </div>
+            
+            <div class="workflow-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="attendee">For Attendees</button>
+                    <button class="tab-btn" data-tab="organizer">For Organizers</button>
+                </div>
+                
+                <div class="tab-content active" id="attendee-tab">
+                    <div class="workflow-steps">
+                        <div class="workflow-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Search & Discover</h4>
+                                <p>Use our advanced search to find events by category, price, date, or location across Ethiopia. Filter to show only free events or set a price range that fits your budget in ETB.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Purchase Tickets</h4>
+                                <p>Select your tickets and complete the secure checkout with Ethiopian payment options. Our system automatically updates ticket availability in real-time so you always see accurate counts.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Attend & Enjoy</h4>
+                                <p>Receive your digital tickets via SMS or email, get event reminders, and enjoy the experience! Check in easily with QR code scanning at the event venue.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="organizer-tab">
+                    <div class="workflow-steps">
+                        <div class="workflow-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Create Your Event</h4>
+                                <p>Use our step-by-step event creation wizard to list your event in Ethiopia. Add details, upload images, set ticket prices in ETB and quantities.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Manage & Promote</h4>
+                                <p>Use our dashboard to track ticket sales, manage attendees, and promote your event through our marketing tools optimized for Ethiopian audiences.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Host & Analyze</h4>
+                                <p>Host your event with our check-in tools, then review detailed analytics to understand your Ethiopian audience and event performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple, Transparent Pricing</h2>
+                <p>Choose the plan that works for you. No hidden fees, no surprises. All prices in ETB.</p>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Free</h3>
+                        <div class="price">
+                            <span class="amount">ETB 0</span>
+                            <span class="period">forever</span>
+                        </div>
+                        <p>For event discovery and attendance</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Browse all events in Ethiopia</li>
+                        <li><i class="fas fa-check"></i> Purchase tickets</li>
+                        <li><i class="fas fa-check"></i> Save favorite events</li>
+                        <li><i class="fas fa-check"></i> Basic search filters</li>
+                        <li><i class="fas fa-times"></i> Advanced event analytics</li>
+                        <li><i class="fas fa-times"></i> Promotion tools</li>
+                    </ul>
+                    <a href="events.html" class="btn btn-outline">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Organizer</h3>
+                        <div class="price">
+                            <span class="amount">5%</span>
+                            <span class="period">per ticket</span>
+                        </div>
+                        <p>For Ethiopian event hosts and organizers</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Free</li>
+                        <li><i class="fas fa-check"></i> Create unlimited events</li>
+                        <li><i class="fas fa-check"></i> Ticket sales management</li>
+                        <li><i class="fas fa-check"></i> Attendee check-in tools</li>
+                        <li><i class="fas fa-check"></i> Basic analytics dashboard</li>
+                        <li><i class="fas fa-check"></i> Email & phone support</li>
+                    </ul>
+                    <a href="post-event.html" class="btn btn-primary">Start Hosting</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="price">
+                            <span class="amount">3%</span>
+                            <span class="period">per ticket</span>
+                        </div>
+                        <p>For professional Ethiopian event companies</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Organizer</li>
+                        <li><i class="fas fa-check"></i> Advanced analytics</li>
+                        <li><i class="fas fa-check"></i> Custom branding</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> API access</li>
+                        <li><i class="fas fa-check"></i> Bulk event management</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Discover or Host Amazing Events in Ethiopia?</h2>
+                <p>Join thousands of Ethiopians who trust Habesha Events for their event needs</p>
+                <div class="cta-buttons">
+                    <a href="events.html" class="btn btn-hero">Browse Events</a>
+                    <a href="post-event.html" class="btn btn-hero-outline">Post Your Event</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <a href="index.html" class="footer-logo">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>HABESHA</span>EVENTS
+                </a>
+                <p class="footer-description">
+                    Connecting people with unforgettable experiences in Ethiopia. Discover, share, and attend amazing events across the country.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="post-event.html">Post Event</a></li>
+                    <li><a href="features.html">Features</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Features</h3>
+                <ul class="footer-links">
+                    <li><a href="#search-discovery">Search & Discovery</a></li>
+                    <li><a href="#ticketing">Ticketing System</a></li>
+                    <li><a href="#management">Event Management</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on upcoming events in Ethiopia</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-subscribe">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Habesha Events. All rights reserved. | Designed with <i class="fas fa-heart"></i> for the Ethiopian community</p>
+        </div>
+    </footer>
+
+    <!-- Search Results Modal -->
+    <div class="modal" id="search-results-modal">
+        <div class="modal-content search-modal">
+            <div class="modal-header">
+                <h3>Search Results</h3>
+                <button class="modal-close" id="results-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="search-stats">
+                    Found <span id="results-count">0</span> events in Ethiopia matching your search
+                </div>
+                <div class="search-results" id="search-results-container">
+                    <!-- Search results will be dynamically loaded here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="close-results">Close</button>
+                <a href="events.html" class="btn btn-primary">View All Events</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="common.js"></script>
+    <script src="features.js"></script>
+</body>
+</html>

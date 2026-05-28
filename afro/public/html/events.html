@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Habesha Events</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="events.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="events-page">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                <span>HABESHA</span>EVENTS
+            </a>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="events.html" class="nav-link active"><i class="fas fa-calendar-check"></i> Events</a>
+                <a href="post-event.html" class="nav-link"><i class="fas fa-plus-circle"></i> Post Event</a>
+                <a href="features.html" class="nav-link"><i class="fas fa-star"></i> Features</a>
+                <a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Support</a>
+                <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="post-event.html" class="btn btn-primary">Post Event</a>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Events Hero Section -->
+    <section class="events-hero">
+        <div class="events-hero-overlay">
+            <div class="events-hero-content">
+                <h1 class="events-hero-title">Discover Amazing Events in Ethiopia</h1>
+                <p class="events-hero-subtitle">Browse through hundreds of events in various categories. Find your next unforgettable experience across Ethiopia.</p>
+                <div class="events-search">
+                    <input type="text" placeholder="Search events by name, category, or location...">
+                    <button class="btn btn-search"><i class="fas fa-search"></i> Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Filter -->
+    <section class="events-filter">
+        <div class="container">
+            <div class="filter-container">
+                <div class="filter-categories">
+                    <button class="filter-btn active" data-category="all">All Events</button>
+                    <button class="filter-btn" data-category="music">Music</button>
+                    <button class="filter-btn" data-category="business">Business</button>
+                    <button class="filter-btn" data-category="art">Art & Culture</button>
+                    <button class="filter-btn" data-category="sports">Sports</button>
+                    <button class="filter-btn" data-category="food">Food & Drink</button>
+                    <button class="filter-btn" data-category="tech">Technology</button>
+                    <button class="filter-btn" data-category="education">Education</button>
+                </div>
+                
+                <div class="filter-options">
+                    <div class="filter-group">
+                        <label for="price-filter">Price Range:</label>
+                        <select id="price-filter">
+                            <option value="all">All Prices</option>
+                            <option value="free">Free Events Only</option>
+                            <option value="0-50">$0 - $50</option>
+                            <option value="50-100">$50 - $100</option>
+                            <option value="100+">$100+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="date-filter">Date:</label>
+                        <select id="date-filter">
+                            <option value="all">All Dates</option>
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                            <option value="upcoming">Upcoming</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sort-filter">Sort By:</label>
+                        <select id="sort-filter">
+                            <option value="date">Date (Soonest)</option>
+                            <option value="price-low">Price (Low to High)</option>
+                            <option value="price-high">Price (High to Low)</option>
+                            <option value="popular">Most Popular</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <section class="all-events">
+        <div class="container">
+            <div class="events-header">
+                <h2>Upcoming Events in Ethiopia</h2>
+                <p class="events-count">Showing <span id="events-count">12</span> events</p>
+            </div>
+            
+            <div class="events-grid-expanded" id="events-container">
+                <!-- Events will be dynamically loaded here -->
+            </div>
+            
+            <div class="load-more-container">
+                <button class="btn btn-load-more" id="load-more">Load More Events</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Browse by Category</h2>
+                <p>Find events that match your interests in Ethiopia</p>
+            </div>
+            
+            <div class="categories-grid">
+                <div class="category-card" data-category="music">
+                    <div class="category-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Music</h3>
+                    <p class="category-count">24 Events</p>
+                </div>
+                
+                <div class="category-card" data-category="business">
+                    <div class="category-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Business</h3>
+                    <p class="category-count">18 Events</p>
+                </div>
+                
+                <div class="category-card" data-category="art">
+                    <div class="category-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Art & Culture</h3>
+                    <p class="category-count">32 Events</p>
+                </div>
+                
+                <div class="category-card" data-category="sports">
+                    <div class="category-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>Sports</h3>
+                    <p class="category-count">15 Events</p>
+                </div>
+                
+                <div class="category-card" data-category="food">
+                    <div class="category-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Food & Drink</h3>
+                    <p class="category-count">28 Events</p>
+                </div>
+                
+                <div class="category-card" data-category="tech">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Technology</h3>
+                    <p class="category-count">21 Events</p>
+                </div>
+                
+                <div class="category-card" data-category="education">
+                    <div class="category-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Education</h3>
+                    <p class="category-count">19 Events</p>
+                </div>
+                
+                <div class="category-card" data-category="community">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <p class="category-count">26 Events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <a href="index.html" class="footer-logo">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>HABESHA</span>EVENTS
+                </a>
+                <p class="footer-description">
+                    Connecting people with unforgettable experiences in Ethiopia. Discover, share, and attend amazing events across the country.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="post-event.html">Post Event</a></li>
+                    <li><a href="features.html">Features</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="support.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on upcoming events</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-subscribe">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Habesha Events. All rights reserved. | Designed with <i class="fas fa-heart"></i> for the Ethiopian community</p>
+        </div>
+    </footer>
+
+    <!-- Ticket Purchase Modal -->
+    <div class="modal" id="ticket-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Purchase Tickets</h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="event-summary">
+                    <h4 id="modal-event-title">Event Title</h4>
+                    <p id="modal-event-date">Date: </p>
+                    <p id="modal-event-price">Price: </p>
+                </div>
+                
+                <div class="ticket-selection">
+                    <label for="ticket-quantity">Number of Tickets:</label>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn" id="decrease-ticket">-</button>
+                        <input type="number" id="ticket-quantity" min="1" max="10" value="1">
+                        <button class="quantity-btn" id="increase-ticket">+</button>
+                    </div>
+                    <p class="ticket-note">Maximum 10 tickets per order</p>
+                </div>
+                
+                <div class="purchase-summary">
+                    <div class="summary-row">
+                        <span>Tickets:</span>
+                        <span id="summary-tickets">1 x $0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Service Fee:</span>
+                        <span id="summary-fee">$2.50</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="summary-total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancel-purchase">Cancel</button>
+                <button class="btn btn-primary" id="confirm-purchase">Confirm Purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notification-message"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="common.js"></script>
+    <script src="events.js"></script>
+</body>
+</html>

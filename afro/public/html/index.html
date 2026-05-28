@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habesha Events - Discover Amazing Events in Ethiopia</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                <span>HABESHA</span>EVENTS
+            </a>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+                <a href="events.html" class="nav-link"><i class="fas fa-calendar-check"></i> Events</a>
+                <a href="post-event.html" class="nav-link"><i class="fas fa-plus-circle"></i> Post Event</a>
+                <a href="features.html" class="nav-link"><i class="fas fa-star"></i> Features</a>
+                <a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Support</a>
+                <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="events.html" class="btn btn-primary">Explore Events</a>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1 class="hero-title">Discover Amazing Events in Ethiopia</h1>
+                <p class="hero-subtitle">From concerts and festivals to workshops and networking events - find your next unforgettable experience in the heart of Ethiopia</p>
+                <div class="hero-buttons">
+                    <a href="events.html" class="btn btn-hero">Explore Events</a>
+                    <a href="post-event.html" class="btn btn-hero-outline">Post Your Event</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Events -->
+    <section class="featured-events">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Events in Ethiopia</h2>
+                <p>Check out these exciting upcoming events across the country</p>
+            </div>
+            
+            <div class="events-grid">
+                <!-- Event Card 1 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="images.jpg" alt="Choke Music Festival">
+                        <span class="event-category">Music</span>
+                        <span class="event-price free">Free</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Choke Music Festival</h3>
+                        <p class="event-date"><i class="far fa-calendar"></i> June 15, 2024 | 6:00 PM</p>
+                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> Addis Ababa Stadium</p>
+                        <p class="event-description">Experience the best of Ethiopian music with top artists from across the country in a day-long celebration of rhythm and culture.</p>
+                        <div class="event-footer">
+                            <div class="tickets-available">
+                                <i class="fas fa-ticket-alt"></i>
+                                <span class="ticket-count">150</span> tickets left
+                            </div>
+                            <button class="btn btn-ticket" data-event="1">Get Ticket</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 2 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Business Conference">
+                        <span class="event-category">Business</span>
+                        <span class="event-price">$49.99</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Ethiopian Entrepreneurship Summit</h3>
+                        <p class="event-date"><i class="far fa-calendar"></i> July 22, 2024 | 9:00 AM</p>
+                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> Skylight Hotel, Addis Ababa</p>
+                        <p class="event-description">Join leading entrepreneurs and investors for networking, workshops, and discussions on business opportunities in Ethiopia.</p>
+                        <div class="event-footer">
+                            <div class="tickets-available">
+                                <i class="fas fa-ticket-alt"></i>
+                                <span class="ticket-count">75</span> tickets left
+                            </div>
+                            <button class="btn btn-ticket" data-event="2">Get Ticket</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event Card 3 -->
+                <div class="event-card">
+                    <div class="event-image">
+                        <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Art Exhibition">
+                        <span class="event-category">Art & Culture</span>
+                        <span class="event-price">$25.00</span>
+                    </div>
+                    <div class="event-info">
+                        <h3>Contemporary Ethiopian Art Exhibition</h3>
+                        <p class="event-date"><i class="far fa-calendar"></i> August 5, 2024 | 10:00 AM</p>
+                        <p class="event-location"><i class="fas fa-map-marker-alt"></i> National Museum, Addis Ababa</p>
+                        <p class="event-description">Showcasing groundbreaking works from emerging and established Ethiopian artists exploring identity, tradition, and modernity.</p>
+                        <div class="event-footer">
+                            <div class="tickets-available">
+                                <i class="fas fa-ticket-alt"></i>
+                                <span class="ticket-count">42</span> tickets left
+                            </div>
+                            <button class="btn btn-ticket" data-event="3">Get Ticket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-footer">
+                <a href="events.html" class="btn btn-explore">
+                    Explore More Events <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How Habesha Events Works</h2>
+                <p>Three simple steps to find or create amazing events in Ethiopia</p>
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Discover Events</h3>
+                    <p>Browse through hundreds of events across Ethiopia or search by category, date, or price.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Get Tickets</h3>
+                    <p>Secure your spot with our easy booking system. Get instant confirmation for your tickets.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-plus-circle"></i>
+                    </div>
+                    <h3>Host Events</h3>
+                    <p>Have an event to share? Post it on Habesha Events and reach thousands of potential attendees.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <a href="index.html" class="footer-logo">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>HABESHA</span>EVENTS
+                </a>
+                <p class="footer-description">
+                    Connecting people with unforgettable experiences in Ethiopia. Discover, share, and attend amazing events across the country.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="post-event.html">Post Event</a></li>
+                    <li><a href="features.html">Features</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="support.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on upcoming events</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-subscribe">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Habesha Events. All rights reserved. | Designed with <i class="fas fa-heart"></i> for the Ethiopian community</p>
+        </div>
+    </footer>
+
+    <!-- Ticket Purchase Modal -->
+    <div class="modal" id="ticket-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Purchase Tickets</h3>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="event-summary">
+                    <h4 id="modal-event-title">Event Title</h4>
+                    <p id="modal-event-date">Date: </p>
+                    <p id="modal-event-price">Price: </p>
+                </div>
+                
+                <div class="ticket-selection">
+                    <label for="ticket-quantity">Number of Tickets:</label>
+                    <div class="quantity-selector">
+                        <button class="quantity-btn" id="decrease-ticket">-</button>
+                        <input type="number" id="ticket-quantity" min="1" max="10" value="1">
+                        <button class="quantity-btn" id="increase-ticket">+</button>
+                    </div>
+                    <p class="ticket-note">Maximum 10 tickets per order</p>
+                </div>
+                
+                <div class="purchase-summary">
+                    <div class="summary-row">
+                        <span>Tickets:</span>
+                        <span id="summary-tickets">1 x $0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Service Fee:</span>
+                        <span id="summary-fee">$2.50</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="summary-total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancel-purchase">Cancel</button>
+                <button class="btn btn-primary" id="confirm-purchase">Confirm Purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notification-message"></span>
+    </div>
+
+    <!-- Success Confirmation Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Purchase Confirmed</h3>
+                <button class="modal-close" id="success-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="success-message">Thank you — your purchase was successful!</p>
+                <div class="success-details">
+                    <p><strong id="success-event-title">Event Title</strong></p>
+                    <p>Quantity: <span id="success-quantity">1</span></p>
+                    <p>Total Paid: <span id="success-total">ETB 0.00</span></p>
+                </div>
+                <p class="success-note">A confirmation email will be sent to you with ticket details. Please save this confirmation.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="success-ok">Close</button>
+                <a href="events.html" class="btn btn-primary" id="success-view">View Events</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="common.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

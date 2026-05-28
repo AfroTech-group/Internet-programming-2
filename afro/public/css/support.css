@@ -1,0 +1,524 @@
+/* ============================================
+   Support Page Styles
+   Uses theme.css variables: --green, --green-dark, --text, --text-muted,
+   --bg, --white, --border, --shadow-sm, --shadow-md, --radius, --radius-sm, --transition
+   ============================================ */
+
+/* ── Hero ── */
+.support-hero {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a3a5c 55%, #0d2137 100%) !important;
+    color: white;
+    padding: 80px 0 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.support-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 70% at 15% 40%, rgba(0,184,148,0.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 60% at 85% 60%, rgba(43,108,176,0.18) 0%, transparent 65%);
+    pointer-events: none;
+}
+
+.support-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.support-hero-content h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 14px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.support-hero-content h1 .accent {
+    color: #00b894;
+}
+
+.support-hero-content > p {
+    font-size: 1rem;
+    max-width: 560px;
+    margin: 0 auto 36px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+}
+
+.support-search {
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+.search-container {
+    display: flex;
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    margin-bottom: 20px;
+}
+
+.search-container i {
+    padding: 0 16px;
+    color: #a0aec0;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.search-container input {
+    flex: 1;
+    border: none;
+    padding: 16px 0;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #1a202c;
+    outline: none;
+    background: transparent;
+}
+
+.search-container input::placeholder {
+    color: #a0aec0;
+}
+
+.search-container button {
+    padding: 14px 24px;
+    font-size: 0.9rem;
+    background: #00b894;
+    color: white;
+    border: none;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.search-container button:hover {
+    background: #00a085;
+}
+
+.search-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    font-size: 0.82rem;
+}
+
+.search-suggestions span {
+    color: rgba(255,255,255,0.6);
+    align-self: center;
+}
+
+.search-suggestions a {
+    color: white;
+    text-decoration: none;
+    background: rgba(255,255,255,0.1);
+    padding: 5px 14px;
+    border-radius: 50px;
+    transition: background 0.2s;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-weight: 500;
+}
+
+.search-suggestions a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* ── Support options grid ── */
+.support-options {
+    padding: 72px 0;
+    background: var(--bg);
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.option-card {
+    background: var(--white);
+    padding: 36px 28px;
+    border-radius: var(--radius);
+    text-align: center;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    animation: fadeUp 0.4s ease both;
+}
+
+.option-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--green);
+}
+
+.option-icon {
+    font-size: 2.6rem;
+    color: var(--green);
+    margin-bottom: 16px;
+}
+
+.option-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.option-card p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+/* ── Section header ── */
+.section-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--text);
+}
+
+.section-header p {
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+}
+
+/* ── FAQ ── */
+.faq-section {
+    padding: 72px 0;
+    background: var(--white);
+}
+
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+}
+
+.category-tab {
+    padding: 9px 22px;
+    background: none;
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition), color var(--transition);
+    color: var(--text-muted);
+}
+
+.category-tab:hover {
+    border-color: var(--green);
+    color: var(--green);
+}
+
+.category-tab.active {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+    font-weight: 600;
+}
+
+.faq-category {
+    display: none;
+}
+
+.faq-category.active {
+    display: block;
+}
+
+.faq-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: box-shadow var(--transition);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-sm);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 18px 20px;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: color var(--transition);
+}
+
+.faq-question:hover {
+    color: var(--green);
+}
+
+.faq-question i {
+    transition: transform var(--transition);
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+    color: var(--green);
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.2s ease;
+}
+
+.faq-answer.active {
+    padding: 4px 20px 20px;
+    max-height: 500px;
+}
+
+.faq-answer p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 0.9rem;
+}
+
+/* ── Contact section ── */
+.contact-section {
+    padding: 72px 0;
+    background: var(--bg);
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 40px;
+}
+
+.contact-info h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text);
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.contact-method:hover {
+    transform: translateX(6px);
+    box-shadow: var(--shadow-md);
+}
+
+.method-icon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--green), #0097a7);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.method-details h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: var(--text);
+}
+
+.method-details p {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 2px;
+}
+
+.method-details small {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    opacity: 0.8;
+}
+
+/* ── Contact form ── */
+.contact-form-container {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-form-container h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text);
+}
+
+.contact-form .form-group {
+    margin-bottom: 18px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: var(--text);
+    background: var(--bg);
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(0,184,148,0.15);
+    background: white;
+}
+
+.contact-form button[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.contact-form button[type="submit"]:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.option-card:nth-child(2) { animation-delay: 0.05s; }
+.option-card:nth-child(3) { animation-delay: 0.1s; }
+.option-card:nth-child(4) { animation-delay: 0.15s; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .support-hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .search-container {
+        flex-direction: column;
+        border-radius: 14px;
+    }
+
+    .search-container button {
+        border-radius: 0 0 14px 14px;
+        padding: 14px;
+    }
+
+    .category-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .category-tab {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .support-hero {
+        padding: 64px 0 56px;
+    }
+
+    .support-hero-content h1 {
+        font-size: 1.7rem;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+}

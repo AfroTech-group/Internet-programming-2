@@ -1,0 +1,9 @@
+/* Minimal styles for signup/login pages */
+body { font-family: Arial, Helvetica, sans-serif; background: #f7f7f7; margin:0; padding:0; }
+.auth { max-width:420px; margin:48px auto; background:#fff; padding:24px; border-radius:6px; box-shadow:0 4px 14px rgba(0,0,0,.08); }
+.auth h1{ margin:0 0 12px; font-size:20px }
+.auth label{ display:block; margin:8px 0; font-size:14px }
+.auth input[type="text"], .auth input[type="email"], .auth input[type="password"]{ width:100%; padding:10px; border:1px solid #ddd; border-radius:4px; box-sizing:border-box }
+.auth button{ margin-top:12px; padding:10px 14px; background:#2b6cb0; color:#fff; border:none; border-radius:4px; cursor:pointer }
+.errors{ background:#fee; border:1px solid #fbb; color:#900; padding:8px; border-radius:4px; margin-bottom:10px }
+.auth p{ margin-top:12px; font-size:14px }

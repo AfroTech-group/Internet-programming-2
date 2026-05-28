@@ -1,0 +1,650 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    
+    --primary-color: #2ecc71;
+    --primary-dark: #27ae60;
+    --secondary-color: #FFFFFF;
+    --accent-color: #00B894;
+    --text-color: #2D3436;
+    --text-light: #636E72;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --radius: 12px;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+    line-height: 1.6;
+}
+
+/* Dark theme variable overrides and key element adjustments for the home page */
+body.dark-theme {
+    /* darker background for the page */
+    --secondary-color: #0B1220; /* page background / card default */
+    --text-color: #E6EEF6;      /* primary text on dark */
+    --text-light: #9AA5B2;      /* secondary text */
+    --shadow: 0 6px 18px rgba(0,0,0,0.6);
+    --primary-color: #178f6a;   /* muted primary on dark */
+    /* keep accent color the same for recognizability */
+    --accent-color: #00B894;
+}
+
+/* Specific home-page elements that used hardcoded light backgrounds need overrides */
+body.dark-theme .featured-events,
+body.dark-theme .categories-section,
+body.dark-theme .how-it-works,
+body.dark-theme .purchase-summary,
+body.dark-theme .modal-footer,
+body.dark-theme .section-footer {
+    background-color: transparent; /* let page background show through */
+}
+
+/* Cards and panels */
+body.dark-theme .event-card,
+body.dark-theme .category-card,
+body.dark-theme .step {
+    background-color: #0F1724; /* slightly lighter than page bg for contrast */
+    color: var(--text-color);
+    box-shadow: 0 8px 30px rgba(2,8,23,0.6);
+}
+
+/* Inputs, selects and small light elements */
+body.dark-theme input,
+body.dark-theme select,
+body.dark-theme .newsletter-form input {
+    background-color: #091016;
+    color: var(--text-color);
+    border-color: rgba(255,255,255,0.06);
+}
+
+/* Make sure event info text is readable */
+body.dark-theme .event-info,
+body.dark-theme .event-description,
+body.dark-theme .event-date,
+body.dark-theme .event-location {
+    color: var(--text-color);
+}
+
+/* Ensure hero text remains visible if hero uses dark overlay */
+body.dark-theme .hero-title,
+body.dark-theme .hero-subtitle,
+body.dark-theme .events-hero-title,
+body.dark-theme .events-hero-subtitle {
+    color: #FFFFFF;
+}
+
+/* Notification contrast */
+body.dark-theme .notification {
+    box-shadow: 0 8px 30px rgba(2,8,23,0.6);
+}
+
+/* Buttons adapt slightly for dark background */
+body.dark-theme .btn-primary {
+    background-color: var(--accent-color);
+    color: #071017;
+}
+
+body.dark-theme .btn-outline {
+    border-color: rgba(255,255,255,0.08);
+    color: var(--text-color);
+}
+
+/* Navbar tweaks for dark theme */
+body.dark-theme .navbar {
+    background-color: #071017;
+    box-shadow: 0 6px 30px rgba(2,8,23,0.6);
+}
+
+/* Make sure footer text is readable */
+body.dark-theme .footer,
+body.dark-theme .footer-container {
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #00A085;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.btn-hero {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 15px 35px;
+    font-size: 18px;
+    box-shadow: var(--shadow);
+}
+
+.btn-hero:hover {
+    background-color: #00A085;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-hero-outline {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 15px 35px;
+    font-size: 18px;
+}
+
+.btn-hero-outline:hover {
+    background-color: white;
+    color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: var(--secondary-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1100;
+    padding: 12px 0; /* slightly tighter */
+    animation: navDrop 320ms ease both;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 26px; /* slightly smaller */
+    font-weight: 700;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 300ms ease;
+}
+
+.logo i {
+    color: var(--accent-color);
+    font-size: 20px;
+    transition: transform 300ms ease;
+}
+
+.logo:hover { transform: translateY(-3px); }
+.logo:hover i { transform: rotate(-8deg) scale(1.03); }
+
+.nav-menu {
+    display: flex;
+    gap: 26px;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease, letter-spacing 260ms ease;
+    padding: 6px 0; /* slightly smaller vertical padding */
+    position: relative;
+    border-radius: 6px;
+    font-size: 0.95rem; /* slightly smaller font */
+}
+
+.nav-link:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(2,8,23,0.06);
+    letter-spacing: 0.4px;
+}
+
+.nav-link i { transition: transform 260ms ease; }
+.nav-link:hover i { transform: translateY(-2px) rotate(6deg); }
+
+.nav-link.active { color: var(--accent-color); }
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--text-color);
+    color: #DFE6E9;
+    padding: 60px 0 0;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.footer-logo i {
+    color: var(--accent-color);
+}
+
+.footer-logo span {
+    color: var(--accent-color);
+}
+
+.footer-description {
+    margin-bottom: 25px;
+    line-height: 1.8;
+    opacity: 0.8;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+.footer-section h3 {
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    opacity: 0.8;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+.footer-links a::before {
+    content: '›';
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.newsletter-form input {
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+.btn-subscribe {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-subscribe:hover {
+    background-color: #00A085;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #DFE6E9;
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+.footer-bottom i {
+    color: #E84393;
+    margin: 0 5px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1100;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--secondary-color);
+    width: 90%;
+    max-width: 900px; /* increased max width so the ticket modal is a bit bigger on large screens */
+    /* keep a comfortable width relative to viewport */
+    box-sizing: border-box;
+    border-radius: var(--radius);
+    overflow: hidden;
+    /* allow the modal content to scroll if it's taller than the viewport */
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    background-color: var(--primary-color);
+}
+
+.modal-header h3 {
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    color: var(--accent-color);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.event-summary {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+}
+
+.ticket-selection {
+    margin-bottom: 30px;
+}
+
+.ticket-selection label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    max-width: 200px;
+    margin-bottom: 10px;
+}
+
+.quantity-btn {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.quantity-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+#ticket-quantity {
+    width: 70px;
+    height: 40px;
+    text-align: center;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.ticket-note {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.purchase-summary {
+    background-color: #F9F9F9;
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-top: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-row.total {
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 25px 30px;
+    background-color: #F9F9F9;
+    border-top: 1px solid #eee;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 15px 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    z-index: 1200;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.notification.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .nav-menu {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--secondary-color);
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 0;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: var(--transition);
+        z-index: 999;
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .modal-footer .btn {
+        width: 100%;
+        text-align: center;
+    }
+}

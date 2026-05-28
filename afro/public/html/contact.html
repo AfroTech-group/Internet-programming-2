@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Habesha Events</title>
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Habesha</span>Events
+            </a>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="events.html" class="nav-link"><i class="fas fa-calendar-check"></i> Events</a>
+                <a href="post-event.html" class="nav-link"><i class="fas fa-plus-circle"></i> Post Event</a>
+                <a href="features.html" class="nav-link"><i class="fas fa-star"></i> Features</a>
+                <a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Support</a>
+                <a href="contact.html" class="nav-link active"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="events.html" class="btn btn-primary">Browse Events</a>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="container">
+            <div class="contact-hero-content">
+                <h1>Get In Touch</h1>
+                <p>We'd love to hear from you. Reach out with questions, feedback, or partnership inquiries.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Our Office</h3>
+                    <p>Bole Road, Olympia Area</p>
+                    <p>Addis Ababa, Ethiopia</p>
+                    <p>Near Sheger Park</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Phone Number</h3>
+                    <p>+251 912 345 678</p>
+                    <p>Monday - Friday</p>
+                    <p>8:30 AM - 5:30 PM EAT</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email Address</h3>
+                    <p>info@habeshaevents.com</p>
+                    <p>support@habeshaevents.com</p>
+                    <p>partners@habeshaevents.com</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 8:30AM-5:30PM</p>
+                    <p>Saturday: 9:00AM-1:00PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form & Map -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-container">
+                <div class="form-section">
+                    <h2>Send Us a Message</h2>
+                    <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                    
+                    <form id="main-contact-form">
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="contact-name">Your Name *</label>
+                                <input type="text" id="contact-name" required>
+                            </div>
+                            
+                            <div class="form-group half">
+                                <label for="contact-email">Email Address *</label>
+                                <input type="email" id="contact-email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-subject">Subject *</label>
+                            <input type="text" id="contact-subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-message">Message *</label>
+                            <textarea id="contact-message" rows="6" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-purpose">Purpose of Contact *</label>
+                            <select id="contact-purpose" required>
+                                <option value="">Select a purpose</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="media">Media/Press Inquiry</option>
+                                <option value="careers">Careers/Job Opportunities</option>
+                                <option value="feedback">Feedback/Suggestion</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="newsletter-optin" checked>
+                                <span>Subscribe to our newsletter for updates on events and features</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="map-section">
+                    <h2>Find Us in Addis Ababa</h2>
+                    <div class="map-container">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <p>Bole Road, Olympia Area, Addis Ababa</p>
+                            <p>Near Sheger Park and Friendship Square</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-contact">
+                        <h3>Connect With Us</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="additional-info">
+                            <h4>Additional Contact Information</h4>
+                            <p><strong>For event organizers:</strong> organizers@habeshaevents.com</p>
+                            <p><strong>For press inquiries:</strong> press@habeshaevents.com</p>
+                            <p><strong>For career opportunities:</strong> careers@habeshaevents.com</p>
+                            <p><strong>For Choke Music Fest:</strong> choke@habeshaevents.com</p>
+                            <p><strong>For Shega Events:</strong> shega@habeshaevents.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section class="departments-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact the Right Department</h2>
+                <p>To ensure your message reaches the right team quickly</p>
+            </div>
+            
+            <div class="departments-grid">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Customer Support</h3>
+                    <p>For help with using Habesha Events, troubleshooting, or account issues.</p>
+                    <a href="support.html" class="btn btn-outline">Get Support</a>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-calendar-plus"></i>
+                    </div>
+                    <h3>Event Organizers</h3>
+                    <p>For questions about posting events, ticketing, or organizer tools.</p>
+                    <a href="post-event.html" class="btn btn-outline">Post Event</a>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Partnerships</h3>
+                    <p>For business development, sponsorships, or partnership opportunities.</p>
+                    <a href="mailto:partners@habeshaevents.com" class="btn btn-outline">Email Partners Team</a>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>Media & Press</h3>
+                    <p>For press inquiries, interviews, or media kit requests.</p>
+                    <a href="mailto:press@habeshaevents.com" class="btn btn-outline">Email Press Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Preview -->
+    <section class="faq-preview">
+        <div class="container">
+            <div class="faq-preview-content">
+                <h2>Common Questions</h2>
+                <p>Check out our FAQs for quick answers to common questions before contacting us.</p>
+                
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <h4>How do I reset my password?</h4>
+                        <p>Click "Forgot Password" on the login page and follow the instructions sent to your email.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>What are your business hours?</h4>
+                        <p>Our support team is available Monday-Friday, 8:30AM-5:30PM EAT. Email responses may come outside these hours.</p>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <h4>How long does it take to get a response?</h4>
+                        <p>We typically respond within 24 hours for general inquiries and within 12 hours for urgent matters.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-link">
+                    <a href="support.html" class="btn btn-outline">View All FAQs</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <a href="index.html" class="footer-logo">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Habesha</span>Events
+                </a>
+                <p class="footer-description">
+                    Connecting people with unforgettable Ethiopian experiences. Discover, share, and attend amazing events across Ethiopia.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="post-event.html">Post Event</a></li>
+                    <li><a href="features.html">Features</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="support.html">Help Center</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on upcoming events</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-subscribe">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Habesha Events. All rights reserved. | Designed with <i class="fas fa-heart"></i> for the Ethiopian community</p>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal" id="contact-success-modal">
+        <div class="modal-content success-modal">
+            <div class="modal-header">
+                <h3>Message Sent Successfully!</h3>
+                <button class="modal-close" id="contact-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h4>Thank you for contacting us!</h4>
+                <p>Your message has been sent successfully. We'll get back to you as soon as possible.</p>
+                <p>Our typical response time is within 24 hours for general inquiries. For urgent matters, we'll respond even sooner.</p>
+                
+                <div class="next-steps">
+                    <h5>What happens next?</h5>
+                    <ul>
+                        <li>You'll receive a confirmation email shortly</li>
+                        <li>Our team will review your message</li>
+                        <li>We'll respond to your inquiry</li>
+                        <li>If you subscribed, you'll start receiving our newsletter</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="close-contact-modal">Close</button>
+                <a href="index.html" class="btn btn-primary">Return to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="contact.js"></script>
+   
+</body>
+</html>

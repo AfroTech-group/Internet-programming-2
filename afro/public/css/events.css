@@ -1,0 +1,416 @@
+/* ============================================
+   Events Page Styles
+   ============================================ */
+
+.events-page .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.events-hero {
+    height: 70vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                      url('https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 80px;
+}
+
+.events-hero-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.events-hero-content {
+    max-width: 800px;
+}
+
+.events-hero-title {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.events-hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.events-search {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.events-search input {
+    width: 100%;
+    padding: 18px 25px;
+    border-radius: 50px;
+    border: none;
+    font-size: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-search {
+    padding: 15px 40px;
+    font-size: 18px;
+}
+
+.events-filter {
+    padding: 40px 0;
+    background-color: var(--primary-color);
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: row; /* show filters horizontally on wider screens */
+    flex-wrap: wrap;
+    gap: 30px;
+    align-items: center;
+    justify-content: center; /* center the filter groups horizontally */
+    max-width: 1100px; /* keep filters centered within a comfortable width */
+    margin: 0 auto;
+}
+
+.filter-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    background-color: white;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.filter-group select {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    min-width: 200px;
+    background-color: white;
+}
+
+.all-events {
+    padding: 80px 0;
+}
+
+.events-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.events-header h2 {
+    font-size: 2.5rem;
+}
+
+.events-count {
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.events-grid-expanded {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+/* Event card styles — match index.html layout and visuals */
+.event-card {
+    background-color: var(--secondary-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.event-image {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.event-card:hover .event-image img {
+    transform: scale(1.05);
+}
+
+.event-category {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.event-price {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-price.free {
+    background-color: #00B894;
+    color: white;
+}
+
+.event-info {
+    padding: 25px;
+}
+
+.event-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.event-date, .event-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.event-description {
+    color: var(--text-color);
+    margin: 15px 0;
+    line-height: 1.7;
+}
+
+.event-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.tickets-available {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.ticket-count {
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.btn-ticket {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 8px 20px;
+}
+
+.btn-ticket:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+.load-more-container {
+    text-align: center;
+}
+
+.btn-load-more {
+    padding: 15px 40px;
+    font-size: 18px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.btn-load-more:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-5px);
+}
+
+.categories-section {
+    padding: 80px 0;
+    background-color: #F9F9F9;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.category-card {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.category-icon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    font-size: 32px;
+    color: var(--accent-color);
+}
+
+.category-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.category-count {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .events-hero-title {
+        font-size: 2.3rem;
+    }
+    
+    .events-hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .events-hero {
+        margin-top: 70px;
+        height: 60vh;
+    }
+    
+    .events-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    /* Stack filter controls on smaller screens */
+    .filter-container {
+        flex-direction: column;
+        gap: 20px;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 576px) {
+    .events-hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .filter-categories {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+    
+    .filter-btn {
+        white-space: nowrap;
+    }
+}
+/* On very small screens, ensure filter options stack */
+@media (max-width: 576px) {
+    .filter-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}

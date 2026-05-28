@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Event - Habesha Events</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="post-event.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                <span>HABESHA</span>EVENTS
+            </a>
+            
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="events.html" class="nav-link"><i class="fas fa-calendar-check"></i> Events</a>
+                <a href="post-event.html" class="nav-link active"><i class="fas fa-plus-circle"></i> Post Event</a>
+                <a href="features.html" class="nav-link"><i class="fas fa-star"></i> Features</a>
+                <a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Support</a>
+                <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn btn-outline" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="events.html" class="btn btn-primary">Browse Events</a>
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Post Event Hero -->
+    <section class="post-event-hero">
+        <div class="container">
+            <div class="post-event-header">
+                <h1>Share Your Event With Ethiopia</h1>
+                <p>Reach thousands of potential attendees across Ethiopia and make your event a success</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Post Event Form -->
+    <section class="post-event-form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Create Your Event in Ethiopia</h2>
+                    <p>Fill in the details below to list your event on Habesha Events</p>
+                </div>
+                
+                <form id="post-event-form" method="post" enctype="multipart/form-data" action="post-event.php">
+                    <!-- CSRF token populated by JS -->
+                    <input type="hidden" name="csrf_token" id="csrf-token" value="">
+                    <!-- Step 1: Event Basics -->
+                    <div class="form-step active" id="step-1">
+                        <h3 class="step-title">Step 1: Event Basics</h3>
+                        
+                        <div class="form-group">
+                            <label for="event-title">Event Title *</label>
+                            <input type="text" id="event-title" name="event_title" placeholder="e.g., Choke Music Festival 2024" required>
+                            <small>Make it catchy and descriptive</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="event-category">Category *</label>
+                            <select id="event-category" name="event_category" required>
+                                <option value="">Select a category</option>
+                                <option value="music">Music</option>
+                                <option value="business">Business</option>
+                                <option value="art">Art & Culture</option>
+                                <option value="sports">Sports</option>
+                                <option value="food">Food & Drink</option>
+                                <option value="tech">Technology</option>
+                                <option value="education">Education</option>
+                                <option value="community">Community</option>
+                                <option value="religious">Religious</option>
+                                <option value="traditional">Traditional</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="event-description">Event Description *</label>
+                            <textarea id="event-description" name="event_description" rows="5" placeholder="Describe your event in detail. What can attendees expect? What makes it special?" required></textarea>
+                            <small>Minimum 150 characters. Be descriptive to attract more attendees.</small>
+                            <div class="char-count"><span id="char-count">0</span>/150 characters</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="event-tags">Tags</label>
+                            <input type="text" id="event-tags" name="event_tags" placeholder="e.g., concert, festival, networking, workshop, Ethiopian">
+                            <small>Add relevant keywords separated by commas to help people find your event</small>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-next" data-next="step-2">Next Step</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Date & Location -->
+                    <div class="form-step" id="step-2">
+                        <h3 class="step-title">Step 2: Date & Location in Ethiopia</h3>
+                        
+                        <div class="form-row">
+                                <div class="form-group half">
+                                <label for="event-date">Event Date *</label>
+                                <input type="date" id="event-date" name="event_date" required>
+                            </div>
+                            
+                            <div class="form-group half">
+                                <label for="event-time">Event Time *</label>
+                                <input type="time" id="event-time" name="event_time" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="event-location">Event Location *</label>
+                            <input type="text" id="event-location" name="event_location" placeholder="e.g., Addis Ababa Stadium, Addis Ababa or Online Event" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="event-address">Full Address</label>
+                            <input type="text" id="event-address" name="event_address" placeholder="Street address, city, region, Ethiopia">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label>Event Type</label>
+                                <div class="radio-group">
+                                    <label class="radio-option">
+                                        <input type="radio" name="event_type" value="in-person" checked>
+                                        <span>In-Person</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="event_type" value="online">
+                                        <span>Online/Virtual</span>
+                                    </label>
+                                    <label class="radio-option">
+                                        <input type="radio" name="event_type" value="hybrid">
+                                        <span>Hybrid (Both)</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group half">
+                                <label for="event-duration">Duration</label>
+                                <select id="event-duration" name="event_duration">
+                                    <option value="1">1 hour</option>
+                                    <option value="2">2 hours</option>
+                                    <option value="3">3 hours</option>
+                                    <option value="4">4 hours</option>
+                                    <option value="full-day">Full day</option>
+                                    <option value="multiple">Multiple days</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-outline btn-prev" data-prev="step-1">Previous</button>
+                            <button type="button" class="btn btn-next" data-next="step-3">Next Step</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Tickets & Pricing -->
+                    <div class="form-step" id="step-3">
+                        <h3 class="step-title">Step 3: Tickets & Pricing (ETB)</h3>
+                        
+                            <div class="form-group">
+                            <label>Ticket Type</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="ticket_type" value="free" checked>
+                                    <span>Free Event</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="ticket_type" value="paid">
+                                    <span>Paid Event</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="ticket-options" id="paid-ticket-options" style="display: none;">
+                                    <div class="form-row">
+                                        <div class="form-group half">
+                                            <label for="ticket-price">Ticket Price (ETB)</label>
+                                            <input type="number" id="ticket-price" name="ticket_price" min="0" step="0.01" placeholder="49.99">
+                                        </div>
+                                        
+                                        <div class="form-group half">
+                                            <label for="ticket-quantity-form">Number of Tickets *</label>
+                                            <input type="number" id="ticket-quantity-form" name="ticket_quantity_form" min="1" max="10000" value="100" required>
+                                        </div>
+                                    </div>
+                            
+                            <div class="form-group">
+                                <label for="early-bird">Early Bird Pricing (Optional)</label>
+                                <div class="early-bird-option">
+                                        <label class="checkbox-option">
+                                        <input type="checkbox" id="early-bird-check" name="early_bird_check">
+                                        <span>Enable early bird pricing</span>
+                                    </label>
+                                    
+                                    <div class="early-bird-details" id="early-bird-details" style="display: none;">
+                                        <div class="form-row">
+                                            <div class="form-group half">
+                                                <label for="early-price">Early Bird Price (ETB)</label>
+                                                <input type="number" id="early-price" name="early_price" min="0" step="0.01">
+                                            </div>
+                                            
+                                            <div class="form-group half">
+                                                <label for="early-deadline">Early Bird Deadline</label>
+                                                <input type="date" id="early-deadline" name="early_deadline">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="free-ticket-options">
+                            <label for="free-ticket-quantity">Estimated Attendance</label>
+                            <input type="number" id="free-ticket-quantity" name="free_ticket_quantity" min="1" max="10000" value="200">
+                            <small>For free events, this helps us understand the expected scale</small>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-outline btn-prev" data-prev="step-2">Previous</button>
+                            <button type="button" class="btn btn-next" data-next="step-4">Next Step</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Media & Contact -->
+                    <div class="form-step" id="step-4">
+                        <h3 class="step-title">Step 4: Media & Contact Information</h3>
+                        
+                            <div class="form-group">
+                            <label for="event-image">Event Image *</label>
+                            <div class="image-upload-container">
+                                <div class="image-upload-area" id="image-upload-area">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload or drag and drop</p>
+                                    <p class="image-upload-hint">PNG, JPG or GIF (Max. 5MB)</p>
+                                    <input type="file" id="event-image" name="event_image" accept="image/*" style="display: none;">
+                                </div>
+                                <div class="image-preview" id="image-preview"></div>
+                            </div>
+                            <small>A high-quality image increases engagement by up to 40%</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="organizer-name">Organizer Name *</label>
+                            <input type="text" id="organizer-name" name="organizer_name" placeholder="Your name or organization name" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="organizer-email">Contact Email *</label>
+                                <input type="email" id="organizer-email" name="organizer_email" placeholder="contact@yourevent.et" required>
+                            </div>
+                            
+                            <div class="form-group half">
+                                <label for="organizer-phone">Contact Phone *</label>
+                                <input type="tel" id="organizer-phone" name="organizer_phone" placeholder="+251 91 234 5678" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="website">Event Website (Optional)</label>
+                            <input type="url" id="website" name="website" placeholder="https://yourevent.et">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="social-media">Social Media Links (Optional)</label>
+                            <div class="social-inputs">
+                                <div class="social-input">
+                                    <i class="fab fa-facebook"></i>
+                                    <input type="url" id="facebook_url" name="facebook_url" placeholder="Facebook event URL">
+                                </div>
+                                <div class="social-input">
+                                    <i class="fab fa-telegram"></i>
+                                    <input type="url" id="twitter_url" name="twitter_url" placeholder="Twitter or Telegram channel">
+                                </div>
+                                <div class="social-input">
+                                    <i class="fab fa-instagram"></i>
+                                    <input type="url" id="instagram_url" name="instagram_url" placeholder="Instagram profile">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-outline btn-prev" data-prev="step-3">Previous</button>
+                            <button type="button" class="btn btn-next" data-next="step-5">Next Step</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 5: Terms & Submission -->
+                    <div class="form-step" id="step-5">
+                        <h3 class="step-title">Step 5: Terms & Submission</h3>
+                        
+                        <div class="terms-container">
+                            <h4>Habesha Events Terms & Policies</h4>
+                            
+                            <div class="terms-content">
+                                <p>By submitting your event, you agree to the following terms:</p>
+                                
+                                <div class="terms-section">
+                                    <h5>1. Event Accuracy</h5>
+                                    <p>You certify that all information provided about your event is accurate, complete, and not misleading.</p>
+                                </div>
+                                
+                                <div class="terms-section">
+                                    <h5>2. Ticket Sales</h5>
+                                    <p>For paid events, Habesha Events charges a 5% service fee on all ticket sales in ETB. This fee is deducted from your payout.</p>
+                                </div>
+                                
+                                <div class="terms-section">
+                                    <h5>3. Content Rights</h5>
+                                    <p>You grant Habesha Events the right to display, promote, and distribute information about your event across our platform and marketing channels.</p>
+                                </div>
+                                
+                                <div class="terms-section">
+                                    <h5>4. Cancellation Policy</h5>
+                                    <p>If you need to cancel your event, you must notify attendees at least 48 hours in advance and process any required refunds in ETB.</p>
+                                </div>
+                                
+                                <div class="terms-section">
+                                    <h5>5. Code of Conduct</h5>
+                                    <p>Your event must comply with all applicable Ethiopian laws and not promote hate speech, discrimination, or illegal activities.</p>
+                                </div>
+                                
+                                <div class="terms-section">
+                                    <h5>6. Ethiopian Cultural Respect</h5>
+                                    <p>Events must respect Ethiopian cultural values and traditions. Habesha Events reserves the right to reject events that are culturally inappropriate.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="checkbox-option terms-checkbox">
+                                <input type="checkbox" id="agree-terms" required>
+                                <span>I have read and agree to the Habesha Events <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a> *</span>
+                            </div>
+                            
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="marketing-optin">
+                                <span>I would like to receive tips and updates about promoting my event in Ethiopia (optional)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="event-summary-preview">
+                            <h4>Event Summary</h4>
+                            <div class="summary-details">
+                                <div class="summary-item">
+                                    <span class="summary-label">Event Title:</span>
+                                    <span class="summary-value" id="summary-title">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Date & Time:</span>
+                                    <span class="summary-value" id="summary-date">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Location:</span>
+                                    <span class="summary-value" id="summary-location">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">Ticket Type:</span>
+                                    <span class="summary-value" id="summary-ticket-type">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-outline btn-prev" data-prev="step-4">Previous</button>
+                            <button type="submit" class="btn btn-primary btn-submit" id="submit-event">Submit Event</button>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="form-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 20%;"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <span class="progress-step active">1</span>
+                        <span class="progress-step">2</span>
+                        <span class="progress-step">3</span>
+                        <span class="progress-step">4</span>
+                        <span class="progress-step">5</span>
+                    </div>
+                    <div class="progress-labels">
+                        <span>Basics</span>
+                        <span>Date & Location</span>
+                        <span>Tickets</span>
+                        <span>Media</span>
+                        <span>Terms</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why List With Us -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why List Your Event on Habesha Events?</h2>
+                <p>Reach a wider Ethiopian audience and manage your event with ease</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Wide Ethiopian Reach</h3>
+                    <p>Access thousands of active event-goers across Ethiopia looking for their next experience.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Easy Ethiopian Ticketing</h3>
+                    <p>Simple ticket management, secure payments in ETB, and automated attendee tracking.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Promotion Tools for Ethiopia</h3>
+                    <p>Use our marketing tools to promote your event across Ethiopian social media and local channels.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Dedicated Ethiopian Support</h3>
+                    <p>Get help from our event specialists who understand the Ethiopian market to make your event a success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <a href="index.html" class="footer-logo">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>HABESHA</span>EVENTS
+                </a>
+                <p class="footer-description">
+                    Connecting people with unforgettable experiences in Ethiopia. Discover, share, and attend amazing events across the country.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="post-event.html">Post Event</a></li>
+                    <li><a href="features.html">Features</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Event Organizers</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Getting Started in Ethiopia</a></li>
+                    <li><a href="#">Pricing & Fees in ETB</a></li>
+                    <li><a href="#">Promotion Guide for Ethiopia</a></li>
+                    <li><a href="#">Organizer Resources</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on upcoming events in Ethiopia</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn btn-subscribe">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Habesha Events. All rights reserved. | Designed with <i class="fas fa-heart"></i> for the Ethiopian community</p>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content success-modal">
+            <div class="modal-header">
+                <h3>Event Submitted Successfully!</h3>
+                <button class="modal-close" id="success-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h4>Thank you for submitting your event!</h4>
+                <p>Your event has been submitted for review.</p>
+                <p>Our team will review your submission and approve it within 24-48 hours. You will receive a confirmation email and SMS once your event is live.</p>
+                
+                <div class="next-steps">
+                    <h5>Next Steps:</h5>
+                    <ul>
+                        <li>Check your email for a confirmation message</li>
+                        <li>Prepare promotional materials for your event</li>
+                        <li>Share your event link once it's approved</li>
+                        <li>Monitor ticket sales through your organizer dashboard</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="close-success-modal">Close</button>
+                <a href="index.html" class="btn btn-primary">Return to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notification-message"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="common.js"></script>
+    <script src="post-event.js"></script>
+</body>
+</html>
