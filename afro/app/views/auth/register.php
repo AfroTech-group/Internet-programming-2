@@ -113,3 +113,120 @@
             background: rgba(0,184,148,0.06); box-shadow: 0 0 0 3px rgba(0,184,148,0.15);
         }
         .hint { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 5px; }
+.btn-auth {
+            width: 100%; padding: 14px;
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white; border: none; border-radius: 10px;
+            font-family: inherit; font-size: 1rem; font-weight: 700;
+            cursor: pointer; margin-top: 8px;
+            transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(0,184,148,0.35); letter-spacing: 0.3px;
+        }
+        .btn-auth:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,184,148,0.45); }
+        .btn-auth:active { transform: translateY(0); }
+
+        .auth-footer-link { text-align: center; margin-top: 20px; font-size: 0.875rem; color: rgba(255,255,255,0.4); }
+        .auth-footer-link a { color: #00b894; font-weight: 600; text-decoration: none; }
+        .auth-footer-link a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            body { grid-template-columns: 1fr; }
+            .auth-panel-left { display: none; }
+            .auth-panel-right { background: linear-gradient(145deg, #0d1b2a, #0a0f1e); min-height: 100vh; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-panel-left">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="left-content">
+        <a class="left-logo" href="/afro/">HABESHA<span>EVENTS</span></a>
+        <h1 class="left-headline">Join the <span>community</span> today</h1>
+        <p class="left-sub">Create your free account and start discovering amazing Ethiopian events near you.</p>
+        <div class="perks">
+            <div class="perk">
+                <div class="perk-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                <div class="perk-text"><strong>Free to join</strong>No subscription fees, ever</div>
+            </div>
+            <div class="perk">
+                <div class="perk-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div>
+                <div class="perk-text"><strong>Book tickets instantly</strong>Secure your spot in seconds</div>
+            </div>
+            <div class="perk">
+                <div class="perk-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <div class="perk-text"><strong>Never miss an event</strong>Get notified about upcoming events</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="auth-panel-right">
+    <div class="auth-box">
+        <h1>Create account</h1>
+        <p class="auth-sub">Fill in the details below to get started</p>
+
+        <?php if (!empty($errors)): ?>
+            <div class="error-box">
+                <?php foreach ($errors as $e): ?>
+                    <p><?php echo htmlspecialchars($e); ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+        <form method="post" action="/afro/?page=register" novalidate>
+            <?php echo csrf_field(); ?>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <div class="input-wrap">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        <input type="text" id="username" name="username" required autocomplete="username"
+                               placeholder="cooluser123"
+                               value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-wrap">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <input type="email" id="email" name="email" required autocomplete="email"
+                               placeholder="you@example.com"
+                               value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="full_name">Full Name <span style="color:rgba(255,255,255,0.25);font-weight:400">(optional)</span></label>
+                <div class="input-wrap">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <input type="text" id="full_name" name="full_name" autocomplete="name"
+                           placeholder="Abebe Girma"
+                           value="<?php echo htmlspecialchars($_POST['full_name'] ?? ''); ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrap">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <input type="password" id="password" name="password" required autocomplete="new-password"
+                           placeholder="Min. 6 characters">
+                </div>
+                <p class="hint">At least 6 characters</p>
+            </div>
+
+            <button type="submit" class="btn-auth">Create Account</button>
+        </form>
+
+        <p class="auth-footer-link">
+            Already have an account? <a href="/afro/?page=login">Sign in</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
