@@ -123,3 +123,171 @@
             font-size: 0.9rem;
             margin-bottom: 32px;
         }
+
+        .error-box {
+            background: rgba(229,62,62,0.12);
+            border: 1px solid rgba(229,62,62,0.3);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            color: #fc8181;
+            font-size: 0.875rem;
+        }
+        .error-box p { margin: 0; }
+
+        .success-box {
+            background: rgba(0,184,148,0.12);
+            border: 1px solid rgba(0,184,148,0.3);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            color: #68d391;
+            font-size: 0.875rem;
+        }
+
+        .form-group { margin-bottom: 18px; }
+        .form-group label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 8px;
+        }
+        .input-wrap { position: relative; }
+        .input-wrap svg {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.25);
+            pointer-events: none;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 13px 14px 13px 42px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: white;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        }
+        .form-group input::placeholder { color: rgba(255,255,255,0.25); }
+        .form-group input:focus {
+            outline: none;
+            border-color: #00b894;
+            background: rgba(0,184,148,0.06);
+            box-shadow: 0 0 0 3px rgba(0,184,148,0.15);
+        }
+
+        .btn-auth {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00b894, #00a085);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(0,184,148,0.35);
+            letter-spacing: 0.3px;
+        }
+        .btn-auth:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(0,184,148,0.45);
+        }
+        .btn-auth:active { transform: translateY(0); }
+
+        .auth-footer-link {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.4);
+        }
+        .auth-footer-link a {
+            color: #00b894;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .auth-footer-link a:hover { text-decoration: underline; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            body { grid-template-columns: 1fr; }
+            .auth-panel-left { display: none; }
+            .auth-panel-right { background: linear-gradient(145deg, #0d1b2a, #0a0f1e); min-height: 100vh; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Left decorative panel -->
+<div class="auth-panel-left">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="left-content">
+        <a class="left-logo" href="/afro/">HABESHA<span>EVENTS</span></a>
+        <h1 class="left-headline">Ethiopia's <span>premier</span> event platform</h1>
+        <p class="left-sub">Discover concerts, festivals, workshops and cultural celebrations happening across Ethiopia — all in one place.</p>
+        <div class="left-stats">
+            <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Events Listed</div></div>
+            <div class="stat"><div class="stat-num">12K+</div><div class="stat-label">Happy Attendees</div></div>
+            <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Cities</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- Right form panel -->
+<div class="auth-panel-right">
+    <div class="auth-box">
+        <h1>Welcome back</h1>
+        <p class="auth-sub">Sign in to your account to continue</p>
+
+        <?php if (!empty($errors)): ?>
+            <div class="error-box">
+                <?php foreach ($errors as $e): ?>
+                    <p><?php echo htmlspecialchars($e); ?></p>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+        <form method="post" action="/afro/?page=login" novalidate>
+            <?php echo csrf_field(); ?>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-wrap">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    <input type="text" id="username" name="username" required autocomplete="username"
+                           placeholder="your_username"
+                           value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrap">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <input type="password" id="password" name="password" required autocomplete="current-password"
+                           placeholder="••••••••">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-auth">Sign In</button>
+        </form>
+
+        <p class="auth-footer-link">
+            Don't have an account? <a href="/afro/?page=register">Create one</a>
+        </p>
+    </div>
+</div>
+
+</body>
+</html>
