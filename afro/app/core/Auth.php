@@ -23,3 +23,33 @@ function is_logged_in(): bool
 {
     return !empty($_SESSION['user_id']);
 }
+
+function current_user(): ?array
+{
+    if (empty($_SESSION['user_id'])) return null;
+    static $user = null;
+    if ($user !== null) return $user;
+    $userModel = new User();
+    $user = $userModel->findById((int) $_SESSION['user_id']);
+    return $user ?: null;
+}
+
+function login_user(int $user_id): void
+{
+    session_regenerate_id(true);
+    $_SESSION['user_id'] = $user_id;
+}
+
+function logout_user(): void
+{
+    $_SESSION = [];
+    if (ini_get('session.use_cookies')) {
+        $params = session_get_cookie_params();
+        setcookie(
+            session_name(), '', time() - 42000,
+            $params['path'], $params['domain'],
+            $params['secure'], $params['httponly']
+        );
+    }
+    session_destroy();
+}
