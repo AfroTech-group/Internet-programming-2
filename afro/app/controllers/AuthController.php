@@ -117,3 +117,15 @@ if (empty($errors)) {
             header('Location: /afro/');
             exit;
         }
+
+        include __DIR__ . '/../views/auth/register.php';
+    }
+
+    // ── Logout ───────────────────────────────────────────────────
+    public function logout(): void
+    {
+        logout_user();
+        header('Location: /afro/');
+        exit;
+    }
+}
