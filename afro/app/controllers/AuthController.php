@@ -58,3 +58,26 @@ class AuthController
         }
 
         include __DIR__ . '/../views/auth/login.php';
+// ── Register ─────────────────────────────────────────────────
+    public function register(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            if (is_logged_in()) { header('Location: /afro/'); exit; }
+            include __DIR__ . '/../views/auth/register.php';
+            return;
+        }
+
+        // CSRF check
+        csrf_verify();
+
+        // Rate-limit registrations by IP to prevent spam account creation
+        $rateLimitKey = 'register|' . ($_SERVER['REMOTE_ADDR'] ?? '');
+        $errors = [];
+
+        if (is_login_locked($rateLimitKey)) {
+            $errors[] = 'Too many registration attempts. Please wait 15 minutes before trying again.';
+        }
+
+        $username = trim($_POST['username'] ?? '');
+        $email    = trim($_POST['email']    ?? '');
+        $password = $_POST['password']      ?? '';
