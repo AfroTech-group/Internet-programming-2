@@ -81,3 +81,39 @@ class AuthController
         $username = trim($_POST['username'] ?? '');
         $email    = trim($_POST['email']    ?? '');
         $password = $_POST['password']      ?? '';
+if (empty($errors)) {
+            if (!$username || !$email || !$password) {
+                $errors[] = 'All fields are required.';
+            }
+            if ($username && !preg_match('/^[A-Za-z0-9_\-]{3,50}$/', $username)) {
+                $errors[] = 'Username must be 3–50 characters (letters, numbers, _ or -)';
+            }
+            if ($email && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $errors[] = 'Invalid email address.';
+            }
+            if ($password && strlen($password) < 6) {
+                $errors[] = 'Password must be at least 6 characters.';
+            }
+        }
+
+        if (empty($errors)) {
+            if ($this->userModel->findByUsername($username)) {
+                $errors[] = 'Username already taken.';
+            } elseif ($this->userModel->findByEmail($email)) {
+                $errors[] = 'Email already registered.';
+            }
+        }
+
+        if (empty($errors)) {
+            // Record a successful registration to count toward the rate limit window
+            record_failed_login($rateLimitKey);
+            $id = $this->userModel->create([
+                'username' => $username,
+                'email'    => $email,
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+                'role'     => 'user',
+            ]);
+            login_user($id); // regenerates session ID internally
+            header('Location: /afro/');
+            exit;
+        }
