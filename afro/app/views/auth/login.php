@@ -44,3 +44,57 @@
         }
         .blob-1 { width: 300px; height: 300px; background: #00b894; top: -80px; left: -80px; }
         .blob-2 { width: 250px; height: 250px; background: #2b6cb0; bottom: -60px; right: -60px; }
+
+        .left-content { position: relative; z-index: 1; }
+        .left-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -0.5px;
+            margin-bottom: 48px;
+            display: inline-block;
+        }
+        .left-logo span { color: #00b894; }
+
+        .left-headline {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .left-headline span { color: #00b894; }
+
+        .left-sub {
+            color: rgba(255,255,255,0.6);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 380px;
+            margin-bottom: 48px;
+        }
+
+        .left-stats {
+            display: flex;
+            gap: 32px;
+        }
+        .stat { }
+        .stat-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+        }
+
+        /* ── Right panel ── */
+        .auth-panel-right {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            background: #0a0f1e;
