@@ -1,7 +1,6 @@
 <?php
 // app/controllers/api/EventApiController.php
 // REST API controller for events — returns JSON only.
-
 require_once __DIR__ . '/../../core/Auth.php';
 require_once __DIR__ . '/../../models/Event.php';
 require_once __DIR__ . '/../../models/Booking.php';
@@ -123,9 +122,7 @@ class EventApiController
             $this->error('Failed to fetch event.', 500);
         }
     }
-
     // ── Utility ──────────────────────────────────────────────────
-
     private function resolveImageUrl(?string $path): string
     {
         if (!$path) {
